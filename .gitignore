@@ -39,3 +39,8 @@ temp/
 coverage/
 htmlcov/
 .nyc_output/
+
+# App database (recreated and seeded on first run)
+data/*.db
+.pytest_cache/
+.coverage
