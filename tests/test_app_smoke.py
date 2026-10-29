@@ -1,14 +1,18 @@
 """Render every page for each role with Streamlit's AppTest and check there are no exceptions."""
+from pathlib import Path
+
 import pytest
 from streamlit.testing.v1 import AppTest
 
 from upskill import auth, db
 
+APP = str(Path(__file__).resolve().parent.parent / "app.py")
+
 
 @pytest.fixture
 def app(tmp_path, monkeypatch):
     monkeypatch.setenv("UPSKILL_DB", str(tmp_path / "app.db"))
-    at = AppTest.from_file("app.py", default_timeout=60)
+    at = AppTest.from_file(APP, default_timeout=60)
     at.run()
     return at
 
@@ -46,6 +50,6 @@ def test_student_flow(app):
 
 def test_mentor_and_admin_pages(app):
     visit_all(login_as(app, "mentor@demo.com"))
-    at = AppTest.from_file("app.py", default_timeout=60)
+    at = AppTest.from_file(APP, default_timeout=60)
     at.run()
     visit_all(login_as(at, "admin@demo.com"))
