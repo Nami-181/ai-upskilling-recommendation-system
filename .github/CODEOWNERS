@@ -1,7 +1,6 @@
 # Reviewers are requested automatically for changes in these areas.
-# Member 1 (Nidhi, frontend): add her GitHub handle to the frontend line once she joins the repo.
 *                       @Nami-181
-/frontend/              @Nami-181
+/frontend/              @nidhimallikarjuna @Nami-181
 /backend/app/           @Nami-181
 /backend/alembic/       @Nami-181
 /backend/ai_engine/     @riyaharugop @Nami-181
