@@ -8,7 +8,7 @@ Software Engineering mini-project, problem #22 · **Team 22, ProjectSync**
 
 | Member | Role | GitHub |
 | --- | --- | --- |
-| Nidhi (M1) | Frontend: React UI, design system | _to be added_ |
+| Nidhi (M1) | Frontend: React UI, design system | [@nidhimallikarjuna](https://github.com/nidhimallikarjuna) |
 | Nami (M2) | Backend + database: FastAPI, PostgreSQL, APIs | [@Nami-181](https://github.com/Nami-181) |
 | Riya (M3) | AI/ML engine: taxonomy, gap scoring, ranking, adaptivity | [@riyaharugop](https://github.com/riyaharugop) |
 | Rhea (M4) | Integration, testing, deployment | [@Rheanair30](https://github.com/Rheanair30) |
