@@ -8,7 +8,7 @@
 | Item | Notes |
 | --- | --- |
 | Previous action items | First retro: reviewed the Sprint 1 goal instead |
-| Metrics | Planned points: __ · Completed: __ · FRs done: __ / 9 (FR-01–03, 05–10) · Bugs found: __ · Test coverage: __% |
+| Metrics | Planned points: 44 · Completed: 44 · FRs done: __ / 9 (FR-01–03, 05–10) · Bugs found: __ · Test coverage: __% |
 | Burndown | Attach a screenshot from GitHub Projects |
 | Safety form | Anonymous Google Form sent on __; average safety score: __ / 5 |
 
@@ -52,5 +52,5 @@
 
 ## 7. Follow-through
 
-- [ ] Actions added to the Sprint 2 backlog with points
-- [ ] This file committed to `docs/retros/`
+- [x] Actions added to the Sprint 2 backlog with points (CI on a fresh runner: LUM-37; pinned versions in backend/requirements.txt)
+- [x] This file committed to `docs/retros/`
