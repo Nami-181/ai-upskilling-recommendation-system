@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   LUMORA DESIGN TOKENS
+   Every colour, font, radius and shadow used in the app is
+   defined here once. Tailwind v4 turns each token into utilities,
+   e.g. --color-blush → bg-blush, text-blush, border-blush/60.
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  /* Brand palette */
+  --color-cream: #f8f3ef;        /* primary background */
+  --color-linen: #f2ebe8;        /* secondary background */
+  --color-blush: #eadce8;        /* dusty pink */
+  --color-lavender: #ddd7ef;
+  --color-sage: #dce8df;
+  --color-sand: #e8e0d5;         /* soft beige */
+  --color-mauve: #b9a6b8;        /* muted mauve */
+  --color-ink: #39343d;          /* dark text */
+  --color-muted: #827b84;        /* secondary text */
+
+  /* Supporting tones (derived from the palette, for text/icons on tints) */
+  --color-line: #e7ded7;         /* hairline borders */
+  --color-paper: #fcfaf8;        /* raised surfaces */
+  --color-plum: #6f5b6e;         /* accent text on light backgrounds */
+  --color-blush-deep: #a2788f;
+  --color-lavender-deep: #7b72a4;
+  --color-sage-deep: #64836d;
+  --color-sand-deep: #9a8770;
+  --color-ink-soft: #2c2830;     /* hover state for ink buttons */
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Elevation — kept very soft */
+  --shadow-hair: 0 1px 0 rgba(57, 52, 61, 0.04);
+  --shadow-soft: 0 1px 2px rgba(57, 52, 61, 0.04), 0 10px 30px -14px rgba(57, 52, 61, 0.14);
+  --shadow-lift: 0 2px 4px rgba(57, 52, 61, 0.04), 0 24px 60px -24px rgba(57, 52, 61, 0.22);
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-up: fade-up 0.7s var(--ease-soft) both;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-toast-in: toast-in 0.35s var(--ease-soft) both;
+  --animate-scale-in: scale-in 0.3s var(--ease-soft) both;
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-fill: fill-bar 1.4s var(--ease-soft) forwards;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes fill-bar {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mauve);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Anchored sections stop below the sticky navbar */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small uppercase label above headings */
+  .eyebrow {
+    @apply text-[11px] font-medium tracking-[0.22em] text-muted uppercase;
+  }
+
+  /* Thin scrollbar for sidebars & panels */
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+  }
+}
