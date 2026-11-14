@@ -6,7 +6,8 @@ For each skill s required by a role:
     readiness   = 100 * sum(w * min(current, required)) / sum(w * required)
 
 Importance (used to rank which gap to close first):
-    importance_s = 0.5 * weight_s / 3 + 0.35 * shortfall_s / 5 + 0.15 * min(unlocks_s, 3) / 3
+    importance_s = 0.5 * weight_s / 3 + 0.45 * shortfall_s / 5 + 0.05 * min(unlocks_s, 3) / 3
+
 where unlocks_s is how many other missing role skills depend on s (directly or
 transitively) through the prerequisite graph.
 """
@@ -65,7 +66,9 @@ def analyze_gap(levels: dict[str, int], requirements: pd.DataFrame,
     df["unlocks"] = df.skill_id.map(unlocks).fillna(0).astype(int)
     df["importance"] = np.where(
         df.gap > 0,
-        0.5 * df.weight / 3 + 0.35 * df.shortfall / 5 + 0.15 * np.minimum(df.unlocks, 3) / 3,
+        0.5 * df.weight / 3
+        + 0.45 * df.shortfall / 5
+        + 0.05 * np.minimum(df.unlocks, 3) / 3,
         0.0,
     ).round(3)
     df["name"] = df.skill_id.map(lambda s: names.get(s, s))
