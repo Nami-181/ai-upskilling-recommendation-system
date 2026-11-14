@@ -1,0 +1,59 @@
+[
+  {
+    "id": "SP1",
+    "description": "3rd-year CSE student, strong Python, little data work, wants Data Scientist",
+    "role_id": "data-scientist",
+    "levels": {"python": 4, "pandas": 1, "statistics": 1, "git": 2},
+    "expected_top_gaps": ["machine_learning", "pandas", "statistics"]
+  },
+  {
+    "id": "SP2",
+    "description": "Built two static websites, beginner JavaScript, wants Full-Stack",
+    "role_id": "full-stack-web-developer",
+    "levels": {"html": 4, "css": 3, "javascript": 1, "git": 1},
+    "expected_top_gaps": ["react", "javascript", "nodejs"]
+  },
+  {
+    "id": "SP3",
+    "description": "Comfortable with Git, never used Linux or cloud, wants DevOps",
+    "role_id": "cloud-devops-engineer",
+    "levels": {"git": 3, "python": 2},
+    "expected_top_gaps": ["linux", "docker", "aws"]
+  },
+  {
+    "id": "SP4",
+    "description": "Commerce student with no technical skills, wants Data Analyst",
+    "role_id": "data-analyst",
+    "levels": {},
+    "expected_top_gaps": ["excel", "sql", "data_visualization"]
+  },
+  {
+    "id": "SP5",
+    "description": "Did a CCNA course, wants Cybersecurity Analyst",
+    "role_id": "cybersecurity-analyst",
+    "levels": {"networking": 3, "python": 1},
+    "expected_top_gaps": ["cybersecurity", "linux", "networking"]
+  },
+  {
+    "id": "SP6",
+    "description": "Uses Figma for posters, wants UI/UX",
+    "role_id": "ui-ux-designer",
+    "levels": {"figma": 2, "html": 1},
+    "expected_top_gaps": ["ux_research", "ui_design", "figma"]
+  },
+  {
+    "id": "SP7",
+    "description": "Data Scientist profile that already meets every requirement",
+    "role_id": "data-scientist",
+    "levels": {"python": 5, "statistics": 4, "pandas": 4, "machine_learning": 4, "sql": 3, "numpy": 3,
+               "data_visualization": 3, "deep_learning": 2, "git": 2},
+    "expected_top_gaps": []
+  },
+  {
+    "id": "SP8",
+    "description": "Java student preparing for SDE placements, weak DSA",
+    "role_id": "software-engineer-sde",
+    "levels": {"java": 3, "dsa": 1, "sql": 1},
+    "expected_top_gaps": ["dsa", "git", "python"]
+  }
+]
