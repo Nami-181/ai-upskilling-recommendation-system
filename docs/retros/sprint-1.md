@@ -52,5 +52,5 @@
 
 ## 7. Follow-through
 
-- [x] Actions added to the Sprint 2 backlog with points (CI on a fresh runner: LUM-37; pinned versions in backend/requirements.txt)
+- [x] Actions added to the Sprint 2 backlog with points (CI on a fresh runner: LUM-37; bounded version ranges in backend/requirements.txt)
 - [x] This file committed to `docs/retros/`

@@ -9,7 +9,7 @@
 
 | Item | Value |
 | --- | --- |
-| Previous action items | Pin versions ✔ (backend/requirements.txt pinned) · CI on a fresh runner ✔ (GitHub Actions, PostgreSQL service) |
+| Previous action items | Pin versions: partly (backend uses bounded ranges, e.g. sqlalchemy>=2.0.30,<2.1; exact pins still to do) · CI on a fresh runner ✔ (GitHub Actions, PostgreSQL service) |
 | Planned points | 117 (31 items) |
 | Completed points | 110. Open: LUM-36 live deployment (5), LUM-39 retro + demo video (2) |
 | Points by member | Nidhi 28 · Nami 33 · Riya 32 · Rhea 22 · team 2 |
