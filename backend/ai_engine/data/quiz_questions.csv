@@ -1,0 +1,100 @@
+question_id,skill_id,question,options,answer_index
+q001,python,"What does len([1, 2, 3]) return?",2|3|6|Error,1
+q002,python,Which keyword defines a function in Python?,func|def|function|lambda only,1
+q003,python,What is the type of {'a': 1}?,list|set|dict|tuple,2
+q004,java,Which method is the entry point of a Java program?,start()|main()|run()|init(),1
+q005,java,Which keyword creates a subclass?,implements|extends|inherits|super,1
+q006,java,Which collection does not allow duplicates?,ArrayList|LinkedList|HashSet|Vector,2
+q007,javascript,Which declares a block-scoped variable that can be reassigned?,var|let|const|static,1
+q008,javascript,What does === check?,Value only|Type only|Value and type|Reference only,2
+q009,javascript,What does Array.prototype.map return?,Nothing|A new array|The same array|A number,1
+q010,html,Which tag is for the largest heading?,<head>|<h6>|<h1>|<header>,2
+q011,html,Which attribute gives an image alternative text?,title|alt|src|label,1
+q012,html,Which element is semantic for navigation links?,<div>|<nav>|<section>|<span>,1
+q013,css,Which property makes a flex container?,display: flex|flex: 1|position: flex|float: flex,0
+q014,css,Which selector targets id='main'?,.main|#main|main|*main,1
+q015,css,"In the box model, which is outside the border?",padding|content|margin|outline-offset,2
+q016,sql,Which clause filters rows after GROUP BY?,WHERE|HAVING|ORDER BY|LIMIT,1
+q017,sql,Which join returns only matching rows from both tables?,LEFT JOIN|FULL JOIN|INNER JOIN|CROSS JOIN,2
+q018,sql,Which statement removes all rows but keeps the table?,DROP|DELETE without WHERE|ALTER|REMOVE,1
+q019,git,Which command records staged changes?,git add|git commit|git push|git stash,1
+q020,git,Which command creates and switches to a new branch?,git branch -d x|git switch -c x|git merge x|git fetch x,1
+q021,git,What does git pull do?,Only downloads|Fetch and merge|Pushes changes|Deletes remote,1
+q022,linux,Which command lists files including hidden ones?,ls -a|ls -h|dir|cat -a,0
+q023,linux,Which command changes file permissions?,chown|chmod|chgrp|perm,1
+q024,linux,What does the | operator do?,Runs in background|Pipes output to next command|Redirects to file|Comments a line,1
+q025,dsa,Average lookup time in a hash table?,O(1)|O(log n)|O(n)|O(n log n),0
+q026,dsa,Which structure is LIFO?,Queue|Stack|Heap|Graph,1
+q027,dsa,Binary search requires the array to be...,Sorted|Unique|Small|Even-sized,0
+q028,react,What hook stores local component state?,useEffect|useState|useRef|useMemo,1
+q029,react,What must each item in a rendered list have?,id prop|key prop|ref prop|name prop,1
+q030,react,Props in React are...,Mutable by the child|Read-only inputs|Global state|CSS classes,1
+q031,nodejs,Which module system does require() belong to?,ES modules|CommonJS|AMD|UMD,1
+q032,nodejs,Node.js runs JavaScript on...,The browser only|The V8 engine on the server|The JVM|Python,1
+q033,nodejs,Which file lists a Node project's dependencies?,requirements.txt|package.json|pom.xml|Gemfile,1
+q034,rest_api,Which HTTP method is usually used to create a resource?,GET|POST|DELETE|HEAD,1
+q035,rest_api,Status code 404 means...,Server error|Created|Not found|Unauthorized,2
+q036,rest_api,A REST API should be...,Stateful per session|Stateless between requests|Only XML|Only on port 8080,1
+q037,numpy,"What does np.zeros((2, 3)).shape return?","(3, 2)|(2, 3)|6|(2,)",1
+q038,numpy,Element-wise operations on arrays without loops are called...,Broadcasting/vectorisation|Recursion|Iteration|Pickling,0
+q039,numpy,Which gives the mean of array a?,a.avg()|np.mean(a)|mean[a]|a.middle(),1
+q040,pandas,Which method shows the first 5 rows?,df.first()|df.head()|df.top()|df.show(),1
+q041,pandas,How do you select rows by label?,df.iloc|df.loc|df.at_row|df.get,1
+q042,pandas,Which method fills missing values?,df.dropna()|df.fillna()|df.isna()|df.replace_na(),1
+q043,statistics,Which measure is least affected by outliers?,Mean|Median|Range|Variance,1
+q044,statistics,A p-value below 0.05 usually means...,Accept the null|Reject the null|No data|Perfect model,1
+q045,statistics,Standard deviation measures...,Centre|Spread|Skew|Sample size,1
+q046,data_visualization,Best chart for a trend over time?,Pie|Line|Scatter|Treemap,1
+q047,data_visualization,Best chart to compare categories?,Bar|Line|Area|Radar,0
+q048,data_visualization,A scatter plot shows...,Parts of a whole|Relationship between two variables|A single total|Text,1
+q049,excel,Which function looks up a value in a table?,SUMIF|XLOOKUP|CONCAT|ROUND,1
+q050,excel,Which feature summarises data by groups interactively?,Pivot table|Freeze panes|Data bar|Macro,0
+q051,excel,$A$1 is an example of...,Relative reference|Absolute reference|Named range|Array,1
+q052,power_bi,Which language writes Power BI measures?,M|DAX|SQL|VBA,1
+q053,power_bi,Power Query is mainly used for...,Data transformation|Charts|Sharing|Security,0
+q054,power_bi,A star schema has a fact table surrounded by...,Dimension tables|Pivot tables|Measures|Visuals,0
+q055,machine_learning,Predicting a number is a ___ task.,Classification|Regression|Clustering|Ranking,1
+q056,machine_learning,Overfitting means the model...,Is too simple|Memorises training data and fails on new data|Has no features|Trains too fast,1
+q057,machine_learning,Which is unsupervised?,Linear regression|K-means|Logistic regression|Random forest classifier,1
+q058,deep_learning,Which activation outputs values between 0 and 1?,ReLU|Sigmoid|Tanh|Linear,1
+q059,deep_learning,Backpropagation computes...,Predictions|Gradients of the loss|Batch size|Accuracy,1
+q060,deep_learning,CNNs are mostly used for...,Tabular data|Images|Spreadsheets|SQL,1
+q061,nlp,Splitting text into words or sub-words is called...,Stemming|Tokenisation|Parsing|Embedding,1
+q062,nlp,Transformers rely mainly on...,Convolutions|Attention|Decision trees|Recurrence only,1
+q063,nlp,Word embeddings represent words as...,Images|Dense vectors|Integers only|Rules,1
+q064,docker,A Docker image is...,A running container|A read-only template for containers|A VM|A volume,1
+q065,docker,Which file defines how to build an image?,docker.yml|Dockerfile|compose.json|image.txt,1
+q066,docker,Which command lists running containers?,docker ps|docker ls|docker images|docker run,0
+q067,kubernetes,The smallest deployable unit in Kubernetes is a...,Node|Pod|Cluster|Service,1
+q068,kubernetes,Which object exposes pods on a stable address?,Service|ConfigMap|Secret|Namespace,0
+q069,kubernetes,Which CLI talks to a cluster?,kubectl|dockerctl|k8sh|minictl,0
+q070,aws,Which AWS service stores objects/files?,EC2|S3|RDS|Lambda,1
+q071,aws,Which service runs code without managing servers?,EC2|Lambda|VPC|EBS,1
+q072,aws,IAM is used for...,Billing|Identity and access management|DNS|Monitoring,1
+q073,ci_cd,Continuous integration means...,Deploying once a year|Merging and testing changes frequently|Manual testing|Writing docs,1
+q074,ci_cd,GitHub Actions workflows live in...,.github/workflows|/ci|/actions|.git/hooks,0
+q075,ci_cd,A failing test in CI should...,Be ignored|Block the merge|Delete the branch|Deploy anyway,1
+q076,networking,Which protocol resolves names to IP addresses?,DHCP|DNS|FTP|ARP,1
+q077,networking,TCP differs from UDP because TCP is...,Connectionless|Reliable and connection-oriented|Faster always|Only for video,1
+q078,networking,How many bits are in an IPv4 address?,16|32|64|128,1
+q079,cybersecurity,Phishing is an example of...,Social engineering|Encryption|Firewall|Patching,0
+q080,cybersecurity,SQL injection is prevented mainly by...,Longer passwords|Parameterised queries|HTTPS|Antivirus,1
+q081,cybersecurity,The CIA triad stands for...,"Code, Infra, Access|Confidentiality, Integrity, Availability|Cloud, Identity, Audit|Control, Inspect, Alert",1
+q082,cryptography,AES is a ___ cipher.,Asymmetric|Symmetric|Hash|Encoding,1
+q083,cryptography,Which is a hash function?,RSA|SHA-256|AES|Diffie-Hellman,1
+q084,cryptography,Public-key encryption uses...,One shared key|A key pair|No key|Only passwords,1
+q085,kotlin,Which keyword declares a read-only variable?,var|val|const var|let,1
+q086,kotlin,String? in Kotlin means...,Optional import|A nullable String|A string array|A char,1
+q087,kotlin,Which class auto-generates equals/hashCode/toString?,object|data class|sealed class|enum,1
+q088,android,Jetpack Compose builds UI with...,XML only|Composable functions|HTML|Storyboards,1
+q089,android,Which component represents one screen traditionally?,Service|Activity|Receiver|Provider,1
+q090,android,Room is a library for...,Networking|Local SQLite persistence|Animations|Payments,1
+q091,figma,Auto layout in Figma is similar to CSS...,Float|Flexbox|Tables|Position absolute,1
+q092,figma,Reusable elements in Figma are called...,Frames|Components|Layers|Pages,1
+q093,figma,Variants group...,Pages|States of a component|Fonts|Files,1
+q094,ui_design,Visual hierarchy is mainly created with...,"Size, contrast and spacing|More colours|Animations only|Longer text",0
+q095,ui_design,Minimum WCAG AA contrast for body text is...,2:1|3:1|4.5:1|10:1,2
+q096,ui_design,Fitts's law relates target size and distance to...,Memory|Time to acquire the target|Colour|Reading speed,1
+q097,ux_research,How many users usually reveal most usability issues in a round?,1|About 5|50|500,1
+q098,ux_research,A persona is...,A real customer's account|A research-based archetype of a user|A logo|A test script,1
+q099,ux_research,Which is a qualitative method?,A/B test|User interviews|Analytics funnel|Survey statistics,1

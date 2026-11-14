@@ -1,0 +1,77 @@
+resource_id,skill_id,title,provider,url,type,level,duration_hrs,is_free,rating
+r001,python,The Python Tutorial,Python.org,https://docs.python.org/3/tutorial/,docs,1,10,1,4.6
+r002,python,Python for Everybody,py4e.com,https://www.py4e.com/,course,1,30,1,4.8
+r003,python,Kaggle Learn: Python,Kaggle,https://www.kaggle.com/learn/python,course,1,5,1,4.6
+r004,python,Real Python tutorials,Real Python,https://realpython.com/,article,2,15,1,4.6
+r005,java,Learn Java,dev.java,https://dev.java/learn/,docs,1,15,1,4.5
+r006,java,Java Programming MOOC,University of Helsinki,https://java-programming.mooc.fi/,course,1,40,1,4.8
+r007,javascript,javascript.info,javascript.info,https://javascript.info/,article,1,25,1,4.8
+r008,javascript,MDN JavaScript Guide,MDN,https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide,docs,2,12,1,4.7
+r009,javascript,JavaScript Algorithms and Data Structures,freeCodeCamp,https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/,course,1,30,1,4.7
+r010,html,Structuring content with HTML,MDN,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content,docs,1,6,1,4.7
+r011,html,Responsive Web Design,freeCodeCamp,https://www.freecodecamp.org/learn/2022/responsive-web-design/,course,1,30,1,4.7
+r012,css,CSS styling basics,MDN,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics,docs,1,8,1,4.6
+r013,css,Learn CSS,web.dev,https://web.dev/learn/css,course,2,12,1,4.7
+r014,sql,SQLBolt,SQLBolt,https://sqlbolt.com/,course,1,4,1,4.7
+r015,sql,Kaggle Learn: Intro to SQL,Kaggle,https://www.kaggle.com/learn/intro-to-sql,course,1,3,1,4.5
+r016,sql,SQL Tutorial for Data Analysis,Mode,https://mode.com/sql-tutorial/,article,2,8,1,4.6
+r017,git,Learn Git Branching,learngitbranching.js.org,https://learngitbranching.js.org/,course,1,3,1,4.8
+r018,git,Pro Git (book),git-scm.com,https://git-scm.com/book/en/v2,docs,2,10,1,4.7
+r019,linux,Linux Journey,linuxjourney.com,https://linuxjourney.com/,course,1,10,1,4.6
+r020,linux,The Linux Command Line (book),linuxcommand.org,https://linuxcommand.org/tlcl.php,docs,2,15,1,4.7
+r021,dsa,DSA tutorial,GeeksforGeeks,https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/,article,1,20,1,4.3
+r022,dsa,NeetCode roadmap,NeetCode,https://neetcode.io/roadmap,video,2,40,1,4.8
+r023,dsa,MIT 6.006 Introduction to Algorithms,MIT OpenCourseWare,https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/,video,3,30,1,4.8
+r024,react,Learn React,react.dev,https://react.dev/learn,docs,1,12,1,4.8
+r025,react,Full Stack Open,University of Helsinki,https://fullstackopen.com/en/,course,2,60,1,4.9
+r026,nodejs,Learn Node.js,nodejs.org,https://nodejs.org/en/learn,docs,1,8,1,4.5
+r027,nodejs,NodeJS course,The Odin Project,https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs,course,2,40,1,4.7
+r028,rest_api,An overview of HTTP,MDN,https://developer.mozilla.org/en-US/docs/Web/HTTP,docs,1,5,1,4.6
+r029,rest_api,FastAPI tutorial,FastAPI,https://fastapi.tiangolo.com/tutorial/,docs,2,8,1,4.8
+r030,numpy,NumPy: the absolute basics,numpy.org,https://numpy.org/doc/stable/user/absolute_beginners.html,docs,1,3,1,4.6
+r031,numpy,Python Data Science Handbook,Jake VanderPlas,https://jakevdp.github.io/PythonDataScienceHandbook/,docs,2,15,1,4.8
+r032,pandas,Kaggle Learn: Pandas,Kaggle,https://www.kaggle.com/learn/pandas,course,1,4,1,4.6
+r033,pandas,pandas getting started,pandas.pydata.org,https://pandas.pydata.org/docs/getting_started/index.html,docs,1,5,1,4.5
+r034,pandas,"Python for Data Analysis, 3E",Wes McKinney,https://wesmckinney.com/book/,docs,2,20,1,4.8
+r035,statistics,Statistics and probability,Khan Academy,https://www.khanacademy.org/math/statistics-probability,course,1,30,1,4.7
+r036,statistics,StatQuest,YouTube,https://www.youtube.com/@statquest,video,1,10,1,4.9
+r037,statistics,Think Stats 2e,Green Tea Press,https://greenteapress.com/wp/think-stats-2e/,docs,2,15,1,4.5
+r038,data_visualization,Kaggle Learn: Data Visualization,Kaggle,https://www.kaggle.com/learn/data-visualization,course,1,4,1,4.5
+r039,data_visualization,Matplotlib tutorials,matplotlib.org,https://matplotlib.org/stable/tutorials/index.html,docs,2,6,1,4.4
+r040,excel,Excel help and learning,Microsoft,https://support.microsoft.com/en-us/excel,docs,1,6,1,4.3
+r041,excel,Excel Skills for Business,Coursera (Macquarie),https://www.coursera.org/specializations/excel,course,2,60,0,4.9
+r042,power_bi,Power BI learning paths,Microsoft Learn,https://learn.microsoft.com/en-us/training/powerplatform/power-bi,course,1,15,1,4.6
+r043,machine_learning,Kaggle Learn: Intro to Machine Learning,Kaggle,https://www.kaggle.com/learn/intro-to-machine-learning,course,1,3,1,4.6
+r044,machine_learning,Machine Learning Crash Course,Google,https://developers.google.com/machine-learning/crash-course,course,1,15,1,4.7
+r045,machine_learning,Machine Learning Specialization,Coursera (DeepLearning.AI),https://www.coursera.org/specializations/machine-learning-introduction,course,2,60,0,4.9
+r046,machine_learning,scikit-learn user guide,scikit-learn,https://scikit-learn.org/stable/user_guide.html,docs,3,15,1,4.6
+r047,deep_learning,Practical Deep Learning for Coders,fast.ai,https://course.fast.ai/,course,2,40,1,4.9
+r048,deep_learning,PyTorch tutorials,pytorch.org,https://pytorch.org/tutorials/,docs,2,10,1,4.6
+r049,deep_learning,Deep Learning Specialization,Coursera (DeepLearning.AI),https://www.coursera.org/specializations/deep-learning,course,3,80,0,4.9
+r050,nlp,Hugging Face LLM course,Hugging Face,https://huggingface.co/learn/llm-course,course,2,20,1,4.8
+r051,nlp,CS224N: NLP with Deep Learning,Stanford,https://web.stanford.edu/class/cs224n/,video,3,40,1,4.8
+r052,docker,Docker Curriculum,docker-curriculum.com,https://docker-curriculum.com/,article,1,4,1,4.6
+r053,docker,Get started with Docker,Docker Docs,https://docs.docker.com/get-started/,docs,1,5,1,4.6
+r054,kubernetes,Kubernetes Basics,kubernetes.io,https://kubernetes.io/docs/tutorials/kubernetes-basics/,docs,2,6,1,4.5
+r055,kubernetes,Kubernetes The Hard Way,GitHub,https://github.com/kelseyhightower/kubernetes-the-hard-way,docs,3,15,1,4.7
+r056,aws,AWS Cloud Practitioner Essentials,AWS Skill Builder,https://explore.skillbuilder.aws/learn,course,1,6,1,4.6
+r057,aws,Getting started on AWS,AWS,https://aws.amazon.com/getting-started/,docs,2,8,1,4.4
+r058,ci_cd,GitHub Actions documentation,GitHub Docs,https://docs.github.com/en/actions,docs,1,5,1,4.6
+r059,networking,Networking Basics,Cisco Networking Academy,https://www.netacad.com/courses/networking-basics,course,1,22,1,4.6
+r060,networking,Network+ training videos,Professor Messer,https://www.professormesser.com/,video,2,25,1,4.8
+r061,cybersecurity,Introduction to Cybersecurity,Cisco Networking Academy,https://www.netacad.com/courses/introduction-to-cybersecurity,course,1,6,1,4.5
+r062,cybersecurity,Pre Security path,TryHackMe,https://tryhackme.com/path/outline/presecurity,course,1,40,1,4.8
+r063,cybersecurity,OWASP Top 10,OWASP,https://owasp.org/www-project-top-ten/,docs,2,5,1,4.6
+r064,cryptography,CryptoHack,CryptoHack,https://cryptohack.org/,course,2,20,1,4.8
+r065,cryptography,Cryptography I,Coursera (Stanford),https://www.coursera.org/learn/crypto,course,3,25,0,4.8
+r066,kotlin,Kotlin Koans,JetBrains,https://play.kotlinlang.org/koans/overview,course,1,5,1,4.6
+r067,kotlin,Get started with Kotlin,kotlinlang.org,https://kotlinlang.org/docs/getting-started.html,docs,1,8,1,4.6
+r068,android,Android Basics with Compose,Google,https://developer.android.com/courses/android-basics-compose/course,course,1,40,1,4.8
+r069,android,Android developer guides,Google,https://developer.android.com/guide,docs,2,15,1,4.5
+r070,figma,Figma Learn,Figma,https://help.figma.com/hc/en-us/categories/360002051613,docs,1,4,1,4.6
+r071,figma,Figma YouTube channel,YouTube,https://www.youtube.com/@Figma,video,1,5,1,4.6
+r072,ui_design,Laws of UX,lawsofux.com,https://lawsofux.com/,article,1,2,1,4.7
+r073,ui_design,Material Design 3,Google,https://m3.material.io/,docs,2,6,1,4.6
+r074,ui_design,Google UX Design Certificate,Coursera (Google),https://www.coursera.org/professional-certificates/google-ux-design,course,1,150,0,4.8
+r075,ux_research,UX articles and videos,Nielsen Norman Group,https://www.nngroup.com/articles/,article,2,10,1,4.8
+r076,ux_research,Google UX Design Certificate,Coursera (Google),https://www.coursera.org/professional-certificates/google-ux-design,course,1,150,0,4.8

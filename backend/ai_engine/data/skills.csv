@@ -1,0 +1,34 @@
+skill_id,name,category,synonyms
+python,Python,Programming,python|python3
+java,Java,Programming,java|java se|core java
+javascript,JavaScript,Programming,javascript|js|es6|ecmascript
+html,HTML,Web,html|html5
+css,CSS,Web,css|css3|tailwind|bootstrap|sass
+sql,SQL,Data,sql|mysql|postgresql|postgres|sqlite|oracle sql|t-sql
+git,Git,Tools,git|github|gitlab|version control
+linux,Linux,Tools,linux|ubuntu|bash|shell scripting|unix
+dsa,Data Structures & Algorithms,Programming,data structures|algorithms|dsa|leetcode|competitive programming
+react,React,Web,react|reactjs|react.js|next.js|nextjs
+nodejs,Node.js,Web,nodejs|node.js|expressjs|express.js
+rest_api,REST APIs,Web,rest api|restful|api development|fastapi|flask|django
+numpy,NumPy,Data,numpy
+pandas,pandas,Data,pandas|dataframe|dataframes
+statistics,Statistics,Data,statistics|probability|hypothesis testing|regression analysis
+data_visualization,Data Visualization,Data,data visualization|matplotlib|seaborn|plotly|tableau
+excel,Excel,Data,excel|ms excel|spreadsheets|pivot tables|vlookup
+power_bi,Power BI,Data,power bi|powerbi|dax
+machine_learning,Machine Learning,AI,machine learning|ml|scikit-learn|sklearn|classification|xgboost
+deep_learning,Deep Learning,AI,deep learning|neural networks|tensorflow|pytorch|keras|cnn|rnn
+nlp,NLP,AI,nlp|natural language processing|transformers|hugging face|llm|bert
+docker,Docker,DevOps,docker|containers|containerization|docker compose
+kubernetes,Kubernetes,DevOps,kubernetes|k8s|helm
+aws,AWS / Cloud,DevOps,aws|amazon web services|ec2|s3|azure|gcp|google cloud|cloud computing
+ci_cd,CI/CD,DevOps,ci/cd|ci cd|github actions|jenkins|continuous integration
+networking,Computer Networking,Security,networking|computer networks|tcp/ip|dns|ccna
+cybersecurity,Cybersecurity,Security,cybersecurity|cyber security|penetration testing|owasp|ethical hacking|siem
+cryptography,Cryptography,Security,cryptography|encryption|pki
+kotlin,Kotlin,Mobile,kotlin
+android,Android Development,Mobile,android|android studio|jetpack compose
+figma,Figma,Design,figma|adobe xd
+ui_design,UI Design,Design,ui design|user interface|visual design|design systems|ui/ux
+ux_research,UX Research,Design,ux research|user research|usability testing|user interviews|wireframing

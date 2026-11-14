@@ -1,0 +1,18 @@
+cert_id,role_id,title,provider,cost,url,is_free,level
+c001,data-scientist,IBM Data Science Professional Certificate,Coursera (IBM),Coursera subscription,https://www.coursera.org/professional-certificates/ibm-data-science,0,1
+c002,data-scientist,Google Advanced Data Analytics Certificate,Coursera (Google),Coursera subscription,https://www.coursera.org/professional-certificates/google-advanced-data-analytics,0,1
+c003,machine-learning-engineer,AWS Certified Machine Learning Engineer - Associate,AWS,~USD 150 exam,https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/,0,2
+c004,machine-learning-engineer,Google Cloud Professional ML Engineer,Google Cloud,~USD 200 exam,https://cloud.google.com/learn/certification/machine-learning-engineer,0,3
+c005,full-stack-web-developer,freeCodeCamp certifications,freeCodeCamp,Free,https://www.freecodecamp.org/learn,1,1
+c006,full-stack-web-developer,Meta Front-End Developer Certificate,Coursera (Meta),Coursera subscription,https://www.coursera.org/professional-certificates/meta-front-end-developer,0,2
+c007,data-analyst,Google Data Analytics Certificate,Coursera (Google),Coursera subscription,https://www.coursera.org/professional-certificates/google-data-analytics,0,1
+c008,data-analyst,Microsoft Power BI Data Analyst (PL-300),Microsoft,~USD 165 exam,https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/,0,2
+c009,cloud-devops-engineer,AWS Certified Cloud Practitioner,AWS,~USD 100 exam,https://aws.amazon.com/certification/certified-cloud-practitioner/,0,1
+c010,cloud-devops-engineer,Certified Kubernetes Administrator (CKA),Linux Foundation,~USD 445 exam,https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/,0,3
+c011,cybersecurity-analyst,ISC2 Certified in Cybersecurity (CC),ISC2,Free exam offer (check),https://www.isc2.org/certifications/cc,1,1
+c012,cybersecurity-analyst,Google Cybersecurity Certificate,Coursera (Google),Coursera subscription,https://www.coursera.org/professional-certificates/google-cybersecurity,0,1
+c013,cybersecurity-analyst,CompTIA Security+,CompTIA,~USD 400 exam,https://www.comptia.org/certifications/security,0,2
+c014,android-developer,Meta Android Developer Certificate,Coursera (Meta),Coursera subscription,https://www.coursera.org/professional-certificates/meta-android-developer,0,2
+c015,ui-ux-designer,Google UX Design Certificate,Coursera (Google),Coursera subscription,https://www.coursera.org/professional-certificates/google-ux-design,0,1
+c016,software-engineer-sde,Oracle Java SE 17 Developer (1Z0-829),Oracle,~USD 245 exam,https://education.oracle.com/java-se-17-developer/pexam_1Z0-829,0,2
+c017,software-engineer-sde,AWS Certified Developer - Associate,AWS,~USD 150 exam,https://aws.amazon.com/certification/certified-developer-associate/,0,2

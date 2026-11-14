@@ -1,0 +1,10 @@
+role_id,title,description
+data-scientist,Data Scientist,Builds statistical and ML models to answer business questions.
+machine-learning-engineer,Machine Learning Engineer,"Trains, ships and maintains ML models in production."
+full-stack-web-developer,Full-Stack Web Developer,Builds web front ends and the APIs behind them.
+data-analyst,Data Analyst,Turns data into reports and dashboards for decisions.
+cloud-devops-engineer,Cloud / DevOps Engineer,"Automates build, deployment and cloud infrastructure."
+cybersecurity-analyst,Cybersecurity Analyst,"Monitors, tests and defends systems against attacks."
+android-developer,Android Developer,Builds native Android apps.
+ui-ux-designer,UI/UX Designer,Researches users and designs usable interfaces.
+software-engineer-sde,Software Engineer (SDE),Designs and writes production software.

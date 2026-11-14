@@ -1,0 +1,38 @@
+project_id,skill_id,title,level,est_hours,description
+p001,python,CLI expense tracker,1,6,Read/write expenses to a CSV file and print monthly summaries.
+p002,python,Web scraper + report,2,10,Scrape a public site with requests/BeautifulSoup and save a cleaned dataset.
+p003,java,Library management console app,1,10,"OOP classes for books, members and loans with file persistence."
+p004,javascript,To-do app with local storage,1,6,"Add, edit, filter and persist tasks in the browser."
+p005,javascript,Weather dashboard,2,10,Fetch a public weather API and render a 5-day forecast.
+p006,html,Personal portfolio page,1,5,"Semantic, accessible single-page portfolio."
+p007,css,Responsive landing page,1,6,Flexbox/Grid layout that works from 360 px to desktop.
+p008,sql,Library database queries,1,5,Design 4 tables and write 15 queries with joins and aggregates.
+p009,sql,Sales analytics with SQL,2,8,Answer 10 business questions on a public sales dataset.
+p010,git,Contribute a fix to an open-source repo,2,6,"Fork, branch, commit, open a pull request and respond to review."
+p011,linux,Shell automation scripts,1,6,"Bash scripts for backups, log rotation and disk alerts."
+p012,dsa,Solve 50 classic problems,2,40,"Arrays, hashing, two pointers, trees, graphs, DP; track patterns."
+p013,react,Movie search SPA,2,12,"React app with routing, API search and favourites."
+p014,nodejs,URL shortener service,2,10,Express + SQLite API with redirects and click counts.
+p015,rest_api,Notes REST API with auth,2,12,"CRUD endpoints, JWT auth, validation and OpenAPI docs."
+p016,numpy,Image filters with NumPy,1,5,"Grayscale, blur and edge detection on image arrays."
+p017,pandas,EDA on a Kaggle dataset,1,8,"Clean, summarise and visualise a public dataset in a notebook."
+p018,statistics,A/B test analysis,2,6,Run a hypothesis test on a sample experiment and report effect size.
+p019,data_visualization,Interactive dashboard,2,8,Plotly/Streamlit dashboard of a public dataset.
+p020,excel,Budget tracker workbook,1,4,"Formulas, pivot tables and charts for a monthly budget."
+p021,power_bi,Sales dashboard in Power BI,2,8,"Model data, write DAX measures and publish a report."
+p022,machine_learning,House price prediction,1,10,Regression pipeline with feature engineering and cross-validation.
+p023,machine_learning,Customer churn classifier,2,12,Imbalanced classification with metrics beyond accuracy.
+p024,deep_learning,Image classifier with transfer learning,2,12,Fine-tune a pretrained CNN on a small dataset.
+p025,nlp,Sentiment analysis with transformers,2,10,Fine-tune a small transformer on product reviews.
+p026,docker,Containerise a web app,1,5,Dockerfile + docker compose with a database.
+p027,kubernetes,Deploy an app to minikube,2,8,"Deployment, service, config map and scaling."
+p028,aws,Static site on S3 + CloudFront,1,5,Host a site with HTTPS on free tier.
+p029,ci_cd,CI pipeline with GitHub Actions,1,4,"Lint, test and build on every push."
+p030,networking,Home network lab in Packet Tracer,1,8,"Subnets, routing and DHCP in a simulated network."
+p031,cybersecurity,Vulnerability scan report,2,8,Scan a deliberately vulnerable VM and write findings with fixes.
+p032,cryptography,File encryption tool,2,8,AES-GCM encrypt/decrypt with key derivation from a password.
+p033,kotlin,Kotlin console quiz game,1,5,"Data classes, collections and null safety in practice."
+p034,android,Habit tracker Android app,2,15,Jetpack Compose UI with Room database and notifications.
+p035,figma,Recreate an app screen in Figma,1,4,"Auto layout, components and variants."
+p036,ui_design,Design system starter kit,2,8,"Colour, type scale, buttons and form components."
+p037,ux_research,Usability study of a campus app,2,8,"5 user tests, findings and redesign proposals."
