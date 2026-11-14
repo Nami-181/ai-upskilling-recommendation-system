@@ -1,0 +1,12 @@
+# Reviewers are requested automatically for changes in these areas.
+# Member 1 (Nidhi, frontend): add her GitHub handle to the frontend line once she joins the repo.
+*                       @Nami-181
+/frontend/              @Nami-181
+/backend/app/           @Nami-181
+/backend/alembic/       @Nami-181
+/backend/ai_engine/     @riyaharugop @Nami-181
+/backend/tests/         @Rheanair30 @Nami-181
+/postman/               @Rheanair30
+/.github/               @Rheanair30 @Nami-181
+/docker-compose.yml     @Rheanair30
+/render.yaml            @Rheanair30

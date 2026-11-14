@@ -1,0 +1,41 @@
+# Full stack on one machine:  docker compose up --build
+#   frontend  http://localhost:5173
+#   backend   http://localhost:8000/docs
+#   postgres  localhost:5432 (lumora / lumora)
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: lumora
+      POSTGRES_PASSWORD: lumora
+      POSTGRES_DB: lumora
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumora"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://lumora:lumora@db:5432/lumora
+      SECRET_KEY: local-docker-secret-change-me
+      CORS_ORIGINS: http://localhost:5173
+      FRONTEND_URL: http://localhost:5173
+      AUTO_CREATE_TABLES: "false"   # Alembic creates the schema
+      DEMO_MODE: "true"
+    ports: ["8000:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8000
+    ports: ["5173:80"]
+    depends_on: [backend]
+
+volumes:
+  pgdata:
