@@ -1,0 +1,18 @@
+frontend:
+  - changed-files:
+      - any-glob-to-any-file: frontend/**
+backend:
+  - changed-files:
+      - any-glob-to-any-file: ['backend/app/**', 'backend/alembic/**', 'backend/requirements*.txt']
+ai-engine:
+  - changed-files:
+      - any-glob-to-any-file: ['backend/ai_engine/**', 'backend/tests/test_ai_engine.py']
+testing:
+  - changed-files:
+      - any-glob-to-any-file: ['backend/tests/**', 'postman/**', '.github/workflows/**']
+deployment:
+  - changed-files:
+      - any-glob-to-any-file: ['docker-compose.yml', 'render.yaml', '**/Dockerfile', 'frontend/vercel.json']
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['docs/**', '**/*.md']

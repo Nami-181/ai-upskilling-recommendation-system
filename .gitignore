@@ -41,6 +41,14 @@ htmlcov/
 .nyc_output/
 
 # App database (recreated and seeded on first run)
-data/*.db
+**/data/*.db
 .pytest_cache/
 .coverage
+
+# Backend / frontend local files
+backend/*.db
+backend/.env
+frontend/.env
+frontend/dist/
+.venv/
+newman.xml

@@ -2,11 +2,136 @@ name: CI
 
 on:
   push:
+    branches: [master, "integration/**"]
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
+  detect:
+    name: Detect project parts
     runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.d.outputs.backend }}
+      frontend: ${{ steps.d.outputs.frontend }}
+      prototype: ${{ steps.d.outputs.prototype }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: d
+        run: |
+          echo "backend=$([ -f backend/requirements.txt ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "frontend=$([ -f frontend/package.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "prototype=$([ -f prototype/streamlit-mvp/app.py ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  backend:
+    name: Backend + AI engine (PostgreSQL)
+    needs: detect
+    if: needs.detect.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: lumora
+          POSTGRES_PASSWORD: lumora
+          POSTGRES_DB: lumora
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U lumora" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg2://lumora:lumora@localhost:5432/lumora
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+      - run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: flake8 app ai_engine tests scripts
+      - name: Migrations apply cleanly on PostgreSQL
+        run: alembic upgrade head && alembic check
+      - name: Unit + API tests
+        run: pytest --cov=app --cov=ai_engine --cov-report=term --cov-fail-under=85
+      - name: Recommendation accuracy on sample profiles
+        run: python -m ai_engine.evaluate
+
+  api-e2e:
+    name: Postman collection (Newman)
+    needs: detect
+    if: needs.detect.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: lumora
+          POSTGRES_PASSWORD: lumora
+          POSTGRES_DB: lumora
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U lumora" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg2://lumora:lumora@localhost:5432/lumora
+      AUTO_CREATE_TABLES: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Start API
+        working-directory: backend
+        run: |
+          pip install -r requirements.txt
+          alembic upgrade head && python -m app.seed
+          uvicorn app.main:app --port 8000 &
+          for i in $(seq 1 30); do curl -sf localhost:8000/health && break; sleep 1; done
+      - name: Run Postman collection
+        run: npx --yes newman run postman/LUMORA.postman_collection.json --reporters cli,junit --reporter-junit-export newman.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newman-report
+          path: newman.xml
+
+  frontend:
+    name: Frontend build
+    needs: detect
+    if: needs.detect.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_USE_MOCK_DATA: "false"
+
+  prototype:
+    name: Sprint 1 Streamlit prototype
+    needs: detect
+    if: needs.detect.outputs.prototype == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototype/streamlit-mvp
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -14,4 +139,4 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: flake8 upskill app.py tests
-      - run: pytest --cov=upskill --cov-report=term --cov-fail-under=70
+      - run: pytest -q

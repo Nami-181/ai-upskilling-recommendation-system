@@ -1,78 +1,90 @@
-# SkillPath AI: Upskilling Recommendation and Automation System for Students
+# LUMORA: AI-Powered Upskilling Recommendation and Automation System for Students
 
-A Streamlit web app that reads a student's profile (courses, projects, skills, resume), finds the skill gap for a target role, and builds a week-by-week learning path with curated resources, hands-on projects and certifications. It tracks progress and adapts the path from quiz scores and feedback.
+[![CI](https://github.com/Nami-181/ai-upskilling-recommendation-system/actions/workflows/ci.yml/badge.svg)](https://github.com/Nami-181/ai-upskilling-recommendation-system/actions/workflows/ci.yml)
 
-## Features
+LUMORA reads a student's profile (skills, courses, projects and goal role) and finds the skill gap for that role. From the gap it builds a **personalised, week-by-week learning path** with curated resources, hands-on projects and certifications, and explains every recommendation. It tracks progress and **adapts the path automatically** from quiz scores, feedback and inactivity.
 
-| Area | What it does |
-| --- | --- |
-| Accounts | Sign-up/login with bcrypt-hashed passwords; Student, Mentor and Admin roles |
-| Profile | Education, courses, projects, skills (levels 1–5), hours per week, preferred resource type |
-| Resume upload | PDF → text → skill extraction with a 33-skill dictionary; the student confirms results before saving |
-| Skill gap | Readiness % for 9 roles, ranked gaps (High / Medium / Low), have-vs-need chart |
-| Learning path | Prerequisite-ordered modules, top 3 resources each, 1 project, weekly schedule, finish date, a reason for every item, role certifications |
-| Progress | Status per item and module, dashboard, streak, quiz history |
-| Adaptation | Quiz ≥ 80% → skill acquired, module completed, path moves earlier · quiz < 50% → easier resource added + one more week · "too easy / too hard / not relevant" feedback swaps resources · inactivity nudge after 7 days |
-| Mentor | Assigned students sorted by risk (inactivity, low progress, failed quizzes, low readiness) |
-| Admin | Edit resources, projects, certifications, quiz questions, role → skill maps, users and mentor assignment; stats and recommendation log |
-| Export | Portfolio CSV and printable page; download or delete all personal data |
+Software Engineering mini-project, problem #22 · **Team 22, ProjectSync**
+
+| Member | Role | GitHub |
+| --- | --- | --- |
+| Nidhi (M1) | Frontend: React UI, design system | _to be added_ |
+| Nami (M2) | Backend + database: FastAPI, PostgreSQL, APIs | [@Nami-181](https://github.com/Nami-181) |
+| Riya (M3) | AI/ML engine: taxonomy, gap scoring, ranking, adaptivity | [@riyaharugop](https://github.com/riyaharugop) |
+| Rhea (M4) | Integration, testing, deployment | [@Rheanair30](https://github.com/Rheanair30) |
+
+## Architecture
+
+```mermaid
+flowchart LR
+  FE["React SPA (Vercel)<br/>frontend/"] -- "HTTPS JSON + JWT" --> API["FastAPI (Render)<br/>backend/app"]
+  API --> AI[["AI engine<br/>backend/ai_engine"]]
+  API --> DB[("PostgreSQL 16<br/>21 tables")]
+```
+
+| Folder | What | Owner |
+| --- | --- | --- |
+| [`frontend/`](frontend) | React 19 + Vite + Tailwind: 5 public, 6 auth and 15 app pages | M1 |
+| [`backend/app/`](backend/app) | FastAPI REST API (48 endpoints), SQLAlchemy models, Alembic migrations, seed | M2 |
+| [`backend/ai_engine/`](backend/ai_engine) | Datasets, skill taxonomy, gap scoring, resource ranking, path planner, adaptive rules, evaluation | M3 |
+| [`backend/tests/`](backend/tests), [`postman/`](postman), [`.github/`](.github) | pytest suites, Postman collection, CI/CD and PR automation | M4 |
+| [`docs/`](docs) | SRS, architecture, database, API, AI engine, test plan and report, deployment, deviations, backlog | all |
+| [`prototype/streamlit-mvp/`](prototype/streamlit-mvp) | Sprint 1 Streamlit prototype (kept for reference) | M2 |
 
 ## Run it
 
+**With Docker** (PostgreSQL, API and frontend):
+
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+docker compose up --build
 ```
 
-The SQLite database is created and seeded at `data/upskill.db` on first run. Demo accounts:
+Open http://localhost:5173 (app) and http://localhost:8000/docs (API docs).
+
+**Without Docker:**
+
+```bash
+cd backend && pip install -r requirements-dev.txt && uvicorn app.main:app --reload    # API on :8000 (SQLite)
+cd frontend && cp .env.example .env && npm install && npm run dev                     # UI on :5173
+```
+
+**Demo accounts** (seeded automatically):
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Student | student@demo.com | student123 |
-| Mentor | mentor@demo.com | mentor123 |
-| Admin | admin@demo.com | admin123 |
+| Student (with a profile) | demo@lumora.app | Lumora@2026 |
+| Admin | admin@lumora.app | Admin@2026 |
 
-Docker: `docker build -t skillpath . && docker run -p 8501:8501 skillpath`
+A new sign-up needs email verification. Without SMTP configured, the API runs in demo mode and the verify page shows the code.
 
-## Test
+## Test it
 
 ```bash
-pip install -r requirements-dev.txt
-flake8 upskill app.py tests
-pytest --cov=upskill
+cd backend
+pytest --cov=app --cov=ai_engine        # 52 tests, 93% coverage
+python -m ai_engine.evaluate            # recommendation accuracy on 8 sample profiles
+npx newman run ../postman/LUMORA.postman_collection.json   # with the API running
 ```
 
-21 tests cover the gap formula, prerequisite ordering, scheduling, resource ranking, adaptation rules, feedback, skill extraction, auth, SQL injection and a render of every page for each role. GitHub Actions runs lint and tests on every push.
+CI (GitHub Actions) runs lint, the tests on PostgreSQL, a migration check, Newman, the accuracy check, the frontend build and the prototype tests on every pull request.
 
-## How recommendations work
+## How the AI works (short version)
 
-1. **Skill levels** come from self-rating, the resume (level 2), projects (level 3) and quizzes (level 4 at ≥ 80%).
-2. **Gap** per skill = weight × max(0, required − have). Readiness = Σ w·min(have, required) / Σ w·required.
-3. **Order:** missing skills plus unknown prerequisites, topologically sorted with the biggest gaps first.
-4. **Resources** score = 0.5·level match + 0.2·rating/5 + 0.15·free + 0.15·preferred type. Top 3 per module, plus the closest-level project.
-5. **Schedule:** 8 h per missing level + project hours, packed into the student's weekly hours.
-6. **Adapt:** quiz and feedback rules change levels, items and hours, then reschedule. Every change is logged with its reason.
+- **Gap:** for each skill the role needs, gap = weight × (required − current). Readiness = weighted share of requirements met.
+- **Priority:** importance = 0.5 · weight + 0.35 · shortfall + 0.15 · how many other gaps the skill unlocks.
+- **Path:** prerequisites first (topological sort), packed into your weekly hours to give due dates.
+- **Resources:** ranked by level match, rating, free, preferred type and length. The top 3 per skill each come with a reason.
+- **Adapts:** a quiz ≥ 80% completes the module. A quiz < 50% adds easier material and time. "Too hard" or "too easy" feedback swaps the resource. Seven days of inactivity sends a nudge.
 
-## Project layout
+Details and evaluation: [docs/ai-engine.md](docs/ai-engine.md).
 
-```
-app.py                 Streamlit UI (student, mentor, admin pages)
-upskill/
-  catalog_data.py      seed skills, roles, resources, projects, certifications, quizzes
-  db.py                SQLite schema, seeding, helpers
-  auth.py              registration, login, hashing
-  skills.py            resume parsing and skill extraction
-  gap.py               skill-gap analysis
-  planner.py           path generation and scheduling
-  adapt.py             adaptation rules, inactivity, risk
-tests/                 pytest unit + Streamlit AppTest smoke tests
-docs/SRS.md            long-term vision SRS
-docs/retros/           sprint retrospectives
-```
+## Documentation
 
-## Documents
+- [Software architecture](docs/architecture.md) · [Database (ER diagram + data dictionary)](docs/database.md) · [API reference](docs/api.md)
+- [AI engine](docs/ai-engine.md) · [Test plan](docs/test-plan.md) · [Test report](docs/test-report.md)
+- [Deployment (Render + Vercel)](docs/deployment.md) · [Deviations](docs/deviations.md) · [Backlog](docs/backlog.md) · [SRS](docs/SRS.md)
+- College deliverables: [`docs/deliverables/`](docs/deliverables) (22_Project Test Plan, 22_Jira Backlog, 22_SW Architecture)
 
-- Requirements sheet (semester scope): [Claude Docs](https://claude.ai/artifact/2mhXV6kvRn2keYQJRW8uij)
-- Long-term SRS: [docs/SRS.md](docs/SRS.md)
-- Sprint 1 retrospective: [docs/retros/sprint-1.md](docs/retros/sprint-1.md)
-- Data sources and attribution: [CREDITS.md](CREDITS.md)
+## Workflow
+
+Backlog items are GitHub issues, with story points, an assignee and a sprint milestone. Each member works on a feature branch and opens a PR that links its issue ("Closes #n"). CI and CODEOWNERS reviews run automatically, and the repo owner merges. See [CREDITS.md](CREDITS.md) for the projects and data we reused.
