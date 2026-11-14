@@ -1,5 +1,7 @@
 # LUMORA — Frontend
 
+> Part of the LUMORA monorepo. Backend: [`../backend`](../backend) · full docs: [`../docs`](../docs). Set `VITE_USE_MOCK_DATA=false` (default in `.env.example`) and start the API (`uvicorn app.main:app` in `backend/`) to use real data; the demo student is `demo@lumora.app` / `Lumora@2026`. All app pages call the API; only the public and auth pages work in mock mode.
+
 **AI-Powered Upskilling Recommendation and Automation System for Students**
 *Learn with purpose. Grow with direction.*
 
@@ -80,8 +82,8 @@ mock data while `VITE_USE_MOCK_DATA=true` and call FastAPI when it is `false`.
 | POST | `/auth/login` | `authService.login` |
 | POST | `/auth/forgot-password` | `authService.forgotPassword` |
 | POST | `/auth/reset-password` | `authService.resetPassword` |
-| POST | `/auth/verify-email` *(proposed)* | `authService.verifyEmail` |
-| POST | `/auth/resend-verification` *(proposed)* | `authService.resendVerification` |
+| POST | `/auth/verify-email` | `authService.verifyEmail` |
+| POST | `/auth/resend-verification` | `authService.resendVerification` |
 | GET / PUT | `/profile` | `profileService` |
 | GET | `/roles` | `profileService.getRoles` |
 | POST | `/analyze/skills` | `recommendationService.analyzeSkills` |

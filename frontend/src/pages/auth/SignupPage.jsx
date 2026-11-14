@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Mail, UserRound, ArrowRight, MailCheck } from 'lucide-react';
 import AuthHeader from './AuthHeader';
@@ -40,6 +40,7 @@ export default function SignupPage() {
     }),
     [],
   );
+  const demoTokenRef = useRef(null);
   const form = useForm(
     { name: '', email: location.state?.email ?? '', password: '', confirmPassword: '', terms: false },
     schema,
@@ -48,7 +49,8 @@ export default function SignupPage() {
   const onSubmit = form.handleSubmit(async ({ name, email, password }) => {
     setFormError(null);
     try {
-      await authService.register({ name, email, password });
+      const result = await authService.register({ name, email, password });
+      demoTokenRef.current = result?.demoToken ?? null;
       setCreated(email.trim().toLowerCase());
     } catch (err) {
       setAttempt((a) => a + 1);
@@ -60,7 +62,7 @@ export default function SignupPage() {
   // Success → continue to email verification
   useEffect(() => {
     if (!created) return undefined;
-    const t = setTimeout(() => navigate('/verify-email', { state: { email: created }, replace: true }), 2200);
+    const t = setTimeout(() => navigate('/verify-email', { state: { email: created, demoToken: demoTokenRef.current }, replace: true }), 2200);
     return () => clearTimeout(t);
   }, [created, navigate]);
 
@@ -76,7 +78,7 @@ export default function SignupPage() {
         <p className="mt-2 max-w-sm text-muted">
           One last step — confirm <span className="text-ink">{created}</span> so we know it’s really you.
         </p>
-        <Button to="/verify-email" state={{ email: created }} className="mt-8" rightIcon={ArrowRight}>
+        <Button to="/verify-email" state={{ email: created, demoToken: demoTokenRef.current }} className="mt-8" rightIcon={ArrowRight}>
           Verify my email
         </Button>
         <p className="mt-4 text-[12px] text-muted">Continuing automatically…</p>

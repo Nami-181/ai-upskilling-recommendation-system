@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { MailOpen, BadgeCheck, RotateCcw, PencilLine, FlaskConical, ArrowRight, ArrowLeft, CircleHelp } from 'lucide-react';
 import AuthHeader from './AuthHeader';
@@ -21,6 +21,10 @@ export default function VerifyEmailPage() {
   const cooldown = useCooldown(30);
 
   const email = location.state?.email || params.get('email');
+  const urlToken = params.get('token');
+  // Without an email server the backend (DEMO_MODE) returns the link token so the flow can be shown.
+  const [demoToken, setDemoToken] = useState(location.state?.demoToken ?? null);
+  const autoVerified = useRef(false);
   const [status, setStatus] = useState('pending'); // pending | verifying | verified
   const [resending, setResending] = useState(false);
   const [error, setError] = useState(null);
@@ -30,7 +34,8 @@ export default function VerifyEmailPage() {
     setResending(true);
     setError(null);
     try {
-      await authService.resendVerification({ email });
+      const result = await authService.resendVerification({ email });
+      if (result?.demoToken) setDemoToken(result.demoToken);
       cooldown.start();
       toast.success('Verification email sent', `A new link is on its way to ${email}.`);
     } catch (err) {
@@ -40,17 +45,26 @@ export default function VerifyEmailPage() {
     }
   };
 
-  const verify = async () => {
+  const verify = async (token = demoToken) => {
     setStatus('verifying');
     setError(null);
     try {
-      await verifyEmail(email);
+      await verifyEmail(email, token);
       setStatus('verified');
     } catch (err) {
       setStatus('pending');
       setError(err.message);
     }
   };
+
+  // Opened from the emailed link: /verify-email?email=…&token=…
+  useEffect(() => {
+    if (urlToken && email && !autoVerified.current) {
+      autoVerified.current = true;
+      verify(urlToken);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlToken, email]);
 
   const changeEmail = async () => {
     await authService.discardUnverified({ email });
@@ -149,13 +163,13 @@ export default function VerifyEmailPage() {
         </Button>
       </div>
 
-      {USE_MOCK_DATA && (
+      {(USE_MOCK_DATA || demoToken) && (
         <div className="mt-8 rounded-2xl border border-dashed border-line bg-paper/60 p-4 text-[12.5px] leading-relaxed text-muted">
           <p className="flex items-center gap-2 font-medium text-ink">
             <FlaskConical className="h-4 w-4 text-lavender-deep" strokeWidth={1.6} /> Demo mode — no email is actually sent
           </p>
           <p className="mt-1">Simulate opening the link from your inbox:</p>
-          <Button size="sm" className="mt-3" onClick={verify} loading={status === 'verifying'}>
+          <Button size="sm" className="mt-3" onClick={() => verify()} loading={status === 'verifying'}>
             {status === 'verifying' ? 'Verifying…' : 'Simulate verification link'}
           </Button>
         </div>

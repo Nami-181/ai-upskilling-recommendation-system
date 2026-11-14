@@ -96,7 +96,7 @@ export default function ForgotPasswordPage() {
           </Button>
         </div>
 
-        {USE_MOCK_DATA && (
+        {(USE_MOCK_DATA || demoToken) && (
           <div className="mt-8 rounded-2xl border border-dashed border-line bg-paper/60 p-4 text-[12.5px] leading-relaxed text-muted">
             <p className="flex items-center gap-2 font-medium text-ink">
               <FlaskConical className="h-4 w-4 text-lavender-deep" strokeWidth={1.6} /> Demo mode — no email is actually sent

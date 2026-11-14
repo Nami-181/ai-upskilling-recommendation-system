@@ -7,11 +7,8 @@ import {
   Library,
   FolderKanban,
   Award,
-  Sparkles,
   ChartNoAxesColumn,
-  CalendarDays,
   Heart,
-  NotebookPen,
   Trophy,
   Bell,
   Settings,
@@ -21,6 +18,7 @@ import {
 /**
  * Single source of truth for the student-app sidebar, page titles and
  * placeholder descriptions. `phase` is the build phase from docs/SCREEN_INVENTORY.md.
+ * AI assistant, study planner and learning journal are future scope (docs/deviations.md).
  * Logout lives in the ACCOUNT section of the sidebar as an action (see Sidebar.jsx).
  */
 export const SIDEBAR_SECTIONS = [
@@ -48,8 +46,6 @@ export const SIDEBAR_SECTIONS = [
         description: 'Practical projects matched to your level, with technologies and skills gained.' },
       { label: 'Certifications', path: '/app/certifications', icon: Award, phase: 4,
         description: 'Certifications worth your time, with providers, pricing and free alternatives.' },
-      { label: 'AI Learning Assistant', path: '/app/assistant', icon: Sparkles, phase: 5,
-        description: 'Ask what to learn next, why something was recommended, or for a study plan.' },
     ],
   },
   {
@@ -57,12 +53,8 @@ export const SIDEBAR_SECTIONS = [
     items: [
       { label: 'Analytics', path: '/app/analytics', icon: ChartNoAxesColumn, phase: 5,
         description: 'Study hours, streaks, quiz scores and skills improved over time.' },
-      { label: 'Study Planner', path: '/app/planner', icon: CalendarDays, phase: 5,
-        description: 'Plan weekly and monthly study sessions, goals and deadlines.' },
       { label: 'Wishlist', path: '/app/wishlist', icon: Heart, phase: 5,
         description: 'Courses, projects, certifications and resources you have saved.' },
-      { label: 'Learning Journal', path: '/app/journal', icon: NotebookPen, phase: 5,
-        description: 'Daily notes and reflections on what you practised and learned.' },
       { label: 'Achievements', path: '/app/achievements', icon: Trophy, phase: 6,
         description: 'Badges, streaks and milestones you have earned along the way.' },
     ],

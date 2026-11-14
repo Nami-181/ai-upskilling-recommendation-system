@@ -22,12 +22,27 @@ import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 import VerifyEmailPage from './pages/auth/VerifyEmailPage';
 import WelcomePage from './pages/auth/WelcomePage';
 
+// C. Onboarding
+import OnboardingPage from './pages/onboarding/OnboardingPage';
+
 // D. Student app
 import DashboardHome from './pages/dashboard/DashboardHome';
+import ProfilePage from './pages/profile/ProfilePage';
+import CareersPage from './pages/career/CareersPage';
+import SkillsPage from './pages/skills/SkillsPage';
+import RoadmapPage from './pages/roadmap/RoadmapPage';
+import ResourcesPage from './pages/resources/ResourcesPage';
+import ProjectsPage from './pages/projects/ProjectsPage';
+import CertificationsPage from './pages/certifications/CertificationsPage';
+import AnalyticsPage from './pages/analytics/AnalyticsPage';
+import WishlistPage from './pages/wishlist/WishlistPage';
+import AchievementsPage from './pages/achievements/AchievementsPage';
+import NotificationsPage from './pages/notifications/NotificationsPage';
+import SettingsPage from './pages/settings/SettingsPage';
+import SupportPage from './pages/support/SupportPage';
 
 // System
 import ComingSoon from './pages/system/ComingSoon';
-import PublicPlaceholder from './pages/system/PublicPlaceholder';
 import NotFound from './pages/system/NotFound';
 import { ALL_APP_PAGES } from './data/navigation';
 
@@ -37,7 +52,20 @@ import { ALL_APP_PAGES } from './data/navigation';
  * See docs/SCREEN_INVENTORY.md for what is complete.
  */
 const BUILT_PAGES = {
-  '/app/dashboard': DashboardHome, // shell until Phase 3
+  '/app/dashboard': DashboardHome,
+  '/app/profile': ProfilePage,
+  '/app/careers': CareersPage,
+  '/app/skills': SkillsPage,
+  '/app/roadmap': RoadmapPage,
+  '/app/resources': ResourcesPage,
+  '/app/projects': ProjectsPage,
+  '/app/certifications': CertificationsPage,
+  '/app/analytics': AnalyticsPage,
+  '/app/wishlist': WishlistPage,
+  '/app/achievements': AchievementsPage,
+  '/app/notifications': NotificationsPage,
+  '/app/settings': SettingsPage,
+  '/app/support': SupportPage,
 };
 
 export default function App() {
@@ -71,16 +99,8 @@ export default function App() {
           {/* Screen 11 */}
           <Route path="/welcome" element={<WelcomePage />} />
 
-          {/* C. Onboarding — Phase 2 */}
-          <Route
-            path="/onboarding/*"
-            element={
-              <PublicPlaceholder
-                title="Let’s get to know you."
-                description="Twelve calm steps: personal details, academics, courses, technical and soft skills, projects, interests, career goal, learning preferences, review — then your roadmap."
-              />
-            }
-          />
+          {/* C. Onboarding — screens 12–23 */}
+          <Route path="/onboarding/*" element={<OnboardingPage />} />
 
           {/* D. Student app */}
           <Route path="/app" element={<DashboardLayout />}>

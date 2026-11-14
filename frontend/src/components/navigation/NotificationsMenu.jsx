@@ -1,14 +1,31 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bell, BellOff } from 'lucide-react';
 import { mockNotifications } from '../../data/mockUser';
+import { USE_MOCK_DATA } from '../../services/api';
+import { activityService } from '../../services/learningService';
+import { timeAgo } from '../../pages/notifications/NotificationsPage';
 import { useDismiss } from '../../hooks/useDismiss';
 import { cn } from '../../utils/cn';
 
-/** Notification dropdown in the top bar. Full page arrives in Phase 6 (/app/notifications). */
+/** Notification dropdown in the top bar. Loads roadmap updates from the API (sample data in mock mode). */
 export default function NotificationsMenu() {
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState(mockNotifications);
+  const [items, setItems] = useState(USE_MOCK_DATA ? mockNotifications : []);
+
+  // Refresh whenever the menu opens
+  useEffect(() => {
+    if (USE_MOCK_DATA || (!open && items.length)) return;
+    activityService.notifications()
+      .then((list) => setItems(list.slice(0, 8).map((n) => ({ ...n, time: timeAgo(n.time) }))))
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  const markAll = () => {
+    setItems((list) => list.map((n) => ({ ...n, unread: false })));
+    if (!USE_MOCK_DATA) activityService.markAllRead().catch(() => {});
+  };
   const ref = useRef(null);
   const close = useCallback(() => setOpen(false), []);
   useDismiss(ref, open, close);
@@ -40,7 +57,7 @@ export default function NotificationsMenu() {
             <button
               type="button"
               disabled={unread === 0}
-              onClick={() => setItems((list) => list.map((n) => ({ ...n, unread: false })))}
+              onClick={markAll}
               className="text-xs text-plum hover:underline disabled:cursor-default disabled:text-muted disabled:no-underline"
             >
               Mark all as read
@@ -74,7 +91,7 @@ export default function NotificationsMenu() {
           )}
 
           <div className="flex items-center justify-between border-t border-line px-4 py-2.5">
-            <span className="text-[11px] text-muted">Sample notifications</span>
+            <span className="text-[11px] text-muted">{USE_MOCK_DATA ? 'Sample notifications' : 'Roadmap updates'}</span>
             <Link to="/app/notifications" onClick={close} className="text-xs font-medium text-plum hover:underline">
               View all
             </Link>

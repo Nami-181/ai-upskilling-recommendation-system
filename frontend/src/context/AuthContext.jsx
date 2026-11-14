@@ -16,8 +16,8 @@ export function AuthProvider({ children }) {
     return result;
   }, []);
 
-  const verifyEmail = useCallback(async (email) => {
-    const result = await authService.verifyEmail({ email });
+  const verifyEmail = useCallback(async (email, token) => {
+    const result = await authService.verifyEmail({ email, token });
     setUser(result.user);
     return result;
   }, []);

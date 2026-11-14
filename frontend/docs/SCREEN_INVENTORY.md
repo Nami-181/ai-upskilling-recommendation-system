@@ -41,46 +41,46 @@ Legend: `[x]` complete · `[ ]` not built yet · *(shared)* = implemented as a s
 
 | # | Screen | Route | Phase | Status |
 |---|--------|-------|-------|--------|
-| 12 | Welcome onboarding | `/onboarding` | 2 | [ ] |
-| 13 | Personal information | `/onboarding/personal` | 2 | [ ] |
-| 14 | Academic background | `/onboarding/academic` | 2 | [ ] |
-| 15 | Courses & learning background | `/onboarding/courses` | 2 | [ ] |
-| 16 | Technical skills (0–5 rating) | `/onboarding/technical-skills` | 2 | [ ] |
-| 17 | Non-technical skills | `/onboarding/soft-skills` | 2 | [ ] |
-| 18 | Previous projects (multiple) | `/onboarding/projects` | 2 | [ ] |
-| 19 | Interests (selectable cards) | `/onboarding/interests` | 2 | [ ] |
-| 20 | Career goals (+ custom) | `/onboarding/career` | 2 | [ ] |
-| 21 | Learning preferences | `/onboarding/preferences` | 2 | [ ] |
-| 22 | Profile review (edit per section) | `/onboarding/review` | 2 | [ ] |
-| 23 | Onboarding complete | `/onboarding/complete` | 2 | [ ] |
+| 12 | Welcome onboarding | `/onboarding` | 2 | [x] |
+| 13 | Personal information | `/onboarding/personal` | 2 | [x] *(shared: step 1 of the onboarding wizard)* |
+| 14 | Academic background | `/onboarding/academic` | 2 | [x] *(shared: step 1)* |
+| 15 | Courses & learning background | `/onboarding/courses` | 2 | [x] *(shared: step 3)* |
+| 16 | Technical skills (0–5 rating) | `/onboarding/technical-skills` | 2 | [x] *(shared: step 2)* |
+| 17 | Non-technical skills | `/onboarding/soft-skills` | 2 | [x] *(shared: step 2 (soft-skills category))* |
+| 18 | Previous projects (multiple) | `/onboarding/projects` | 2 | [x] *(shared: step 4)* |
+| 19 | Interests (selectable cards) | `/onboarding/interests` | 2 | [x] *(shared: step 6)* |
+| 20 | Career goals (+ custom) | `/onboarding/career` | 2 | [x] *(shared: step 5)* |
+| 21 | Learning preferences | `/onboarding/preferences` | 2 | [x] *(shared: step 6)* |
+| 22 | Profile review (edit per section) | `/onboarding/review` | 2 | [x] *(shared: step 7)* |
+| 23 | Onboarding complete | `/onboarding/complete` | 2 | [x] *(shared: redirect to the new roadmap)* |
 
 ## D. Student application
 
 | # | Screen | Route | Phase | Status |
 |---|--------|-------|-------|--------|
-| 24 | Main dashboard | `/app/dashboard` | 3 | [ ] |
-| 25 | Student profile | `/app/profile` | 2 | [ ] |
-| 26 | Edit profile | `/app/profile/edit` | 2 | [ ] |
-| 27 | Career explorer (search, compare, select) | `/app/careers` | 3 | [ ] |
-| 28 | Skill gap analyzer | `/app/skills` | 3 | [ ] |
-| 29 | Individual skill details | `/app/skills/:skillId` | 3 | [ ] |
-| 30 | Learning roadmap | `/app/roadmap` | 4 | [ ] |
-| 31 | Roadmap topic details (incl. quiz) | `/app/roadmap/:topicId` | 4 | [ ] |
-| 32 | Resource library | `/app/resources` | 4 | [ ] |
-| 33 | Resource details | `/app/resources/:resourceId` | 4 | [ ] |
-| 34 | Project recommendations | `/app/projects` | 4 | [ ] |
-| 35 | Project details | `/app/projects/:projectId` | 4 | [ ] |
-| 36 | Certification finder | `/app/certifications` | 4 | [ ] |
-| 37 | Certification details | `/app/certifications/:certId` | 4 | [ ] |
-| 38 | AI learning assistant | `/app/assistant` | 5 | [ ] |
-| 39 | Progress analytics | `/app/analytics` | 5 | [ ] |
-| 40 | Study planner (week + month) | `/app/planner` | 5 | [ ] |
-| 41 | Learning journal | `/app/journal` | 5 | [ ] |
-| 42 | Wishlist | `/app/wishlist` | 5 | [ ] |
-| 43 | Achievements | `/app/achievements` | 6 | [ ] |
-| 44 | Notifications (+ preferences) | `/app/notifications` | 6 | [ ] |
-| 45 | Settings | `/app/settings` | 6 | [ ] |
-| 46 | Help & support | `/app/support` | 6 | [ ] |
+| 24 | Main dashboard | `/app/dashboard` | 3 | [x] |
+| 25 | Student profile | `/app/profile` | 2 | [x] |
+| 26 | Edit profile | `/app/profile/edit` | 2 | [x] |
+| 27 | Career explorer (search, compare, select) | `/app/careers` | 3 | [x] |
+| 28 | Skill gap analyzer | `/app/skills` | 3 | [x] |
+| 29 | Individual skill details | `/app/skills/:skillId` | 3 | [x] *(shared: expandable row in the skill gap table)* |
+| 30 | Learning roadmap | `/app/roadmap` | 4 | [x] |
+| 31 | Roadmap topic details (incl. quiz) | `/app/roadmap/:topicId` | 4 | [x] *(shared: module card + quiz dialog on the roadmap)* |
+| 32 | Resource library | `/app/resources` | 4 | [x] |
+| 33 | Resource details | `/app/resources/:resourceId` | 4 | [x] *(shared: resource card (opens provider link))* |
+| 34 | Project recommendations | `/app/projects` | 4 | [x] |
+| 35 | Project details | `/app/projects/:projectId` | 4 | [x] *(shared: project card)* |
+| 36 | Certification finder | `/app/certifications` | 4 | [x] |
+| 37 | Certification details | `/app/certifications/:certId` | 4 | [x] *(shared: certification card)* |
+| 38 | AI learning assistant | `/app/assistant` | 5 | deferred (see docs/deviations.md) |
+| 39 | Progress analytics | `/app/analytics` | 5 | [x] |
+| 40 | Study planner (week + month) | `/app/planner` | 5 | deferred (see docs/deviations.md) |
+| 41 | Learning journal | `/app/journal` | 5 | deferred (see docs/deviations.md) |
+| 42 | Wishlist | `/app/wishlist` | 5 | [x] |
+| 43 | Achievements | `/app/achievements` | 6 | [x] |
+| 44 | Notifications (+ preferences) | `/app/notifications` | 6 | [x] |
+| 45 | Settings | `/app/settings` | 6 | [x] |
+| 46 | Help & support | `/app/support` | 6 | [x] |
 
 ## E. Shared UI patterns
 
@@ -96,8 +96,8 @@ Legend: `[x]` complete · `[ ]` not built yet · *(shared)* = implemented as a s
 | Form fields with validation / disabled / loading states | `components/forms` | 1 | [x] |
 | Protected routes + auth session | `context/AuthContext` | 1 | [x] |
 | 404 page | `*` | 1 | [x] |
-| Delete confirmation | Planner, journal, wishlist, projects | 4–5 | [ ] |
-| Unsaved changes warning | Edit profile, settings | 2 / 6 | [ ] |
+| Delete confirmation | Planner, journal, wishlist, projects | 4–5 | [x] |
+| Unsaved changes warning | Edit profile, settings | 2 / 6 | [x] |
 | Search suggestions | Topbar global search | 3 | [ ] |
-| Filter panels (incl. mobile sheet) | Resources, projects, certifications | 4 | [ ] |
-| Loading skeletons / empty / error states per page | All app pages | 2–7 | [ ] |
+| Filter panels (incl. mobile sheet) | Resources, projects, certifications | 4 | [x] |
+| Loading skeletons / empty / error states per page | All app pages | 2–7 | [x] |

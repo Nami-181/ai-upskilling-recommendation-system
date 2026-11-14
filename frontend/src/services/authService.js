@@ -10,8 +10,8 @@ import { DEMO_ACCOUNT, mockUser } from '../data/mockUser';
  *                                 403 detail { code: "EMAIL_NOT_VERIFIED" } when unverified
  *   POST /auth/forgot-password  { email }                  → { message }   (always 200; never reveals if the email exists)
  *   POST /auth/reset-password   { token, password }        → { message }
- *   POST /auth/verify-email     { email, code? }           → { access_token, user }   ← proposed, not in the original list
- *   POST /auth/resend-verification { email }               → { message }              ← proposed, not in the original list
+ *   POST /auth/verify-email     { email, token }           → { access_token, user }   (token from the emailed link)
+ *   POST /auth/resend-verification { email }               → { message, demoToken? }
  *
  * ── MOCK MODE ────────────────────────────────────────────────
  * With VITE_USE_MOCK_DATA=true, accounts are stored in this browser's
@@ -137,9 +137,9 @@ export const authService = {
     return mockDelay({ message: 'Your password has been reset.' }, 900);
   },
 
-  async verifyEmail({ email }) {
+  async verifyEmail({ email, token }) {
     if (!USE_MOCK_DATA) {
-      const result = await api.post('/auth/verify-email', { email }, { skipAuth: true });
+      const result = await api.post('/auth/verify-email', { email, token }, { skipAuth: true });
       tokenStorage.set(result.access_token);
       localStorage.setItem(USER_KEY, JSON.stringify(result.user));
       return result;
