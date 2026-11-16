@@ -1,22 +1,24 @@
 # Test report: LUMORA (Sprint 2)
 
-**Date:** 14 Nov 2026 · **Build:** branch `feature/mvp-app` + Sprint 2 PRs · **Prepared by:** Team 22 (test lead: Rhea, M4)
+**Date:** 16 Nov 2026 (re-run) · **Build:** `master` + Lab 5–7 additions · **Prepared by:** Team 22 (test lead: Rhea, M4)
 Plan: [test-plan.md](test-plan.md)
 
 ## 1. Summary
 
 | Suite | Result | Evidence |
 | --- | --- | --- |
-| Unit + API tests (pytest) | **52 / 52 passed** | `cd backend && pytest --cov=app --cov=ai_engine` |
-| Line coverage (app + ai_engine) | **93%** (1907 statements, 135 missed); CI gate 85% | coverage report below |
-| Static analysis | flake8 clean; `npm run build` succeeds | CI jobs `backend`, `frontend` |
+| Unit + API tests (pytest) | **66 / 66 passed** (52 unit/API + 11 fuzz properties + 3 regression tests for D-08) | `cd backend && pytest --cov=app --cov=ai_engine --cov-branch` |
+| Statement (line) coverage | **93.1%** (1,787 of 1,919 statements); CI gate 85% | `docs/reports/coverage-html/` |
+| Branch coverage | **76.6%** (308 of 402 branches); combined line + branch **90%** | `docs/reports/coverage.xml` |
+| Fuzzing (Hypothesis, Lab 7) | **11 properties × 150 generated inputs = 1,650 cases per run; 1 real bug found on PostgreSQL (D-08), fixed** | `tests/test_fuzz.py` |
+| Static analysis (Lab 5) | flake8 0 issues; bandit 0 open issues (2 Low found and resolved); radon average complexity A (3.3) | `docs/reports/` |
 | Migrations | `alembic upgrade head` on empty DB creates 21 tables; seed is idempotent | CI job `backend` |
 | Postman / Newman | **37 requests, 48 / 48 assertions passed** | CI job `api-e2e`, JUnit artefact |
-| Recommendation accuracy | **precision@3 0.959**, prereq order **100%**, level fit **0.953** (targets 0.85 / 100% / 0.85) | `python -m ai_engine.evaluate` |
+| Recommendation accuracy | **precision@3 1.000**, prereq order **100%**, level fit **0.953** (targets 0.85 / 100% / 0.85) | `python -m ai_engine.evaluate` |
 | Browser E2E (TC-48, TC-49) | Passed, no console errors on 16 pages | Chrome run, see §5 |
 | Performance (TC-47) | All p95 far below targets | §4 |
 | Prototype (Sprint 1 Streamlit MVP) | 21 / 21 passed | CI job `prototype` |
-| Open defects | 0 Critical, 0 Major, 1 Minor (accuracy tuning SP2) | §6 |
+| Open defects | 0 Critical, 0 Major, 0 Minor | §7 |
 
 Exit criteria in the plan (§5) are **met**. The one exception is live deployment: the configuration is complete and tested in Docker, but publishing to Render and Vercel needs the team's accounts (LUM-36).
 
@@ -66,7 +68,7 @@ The frontend production bundle is 157 kB gzip for the app plus 127 kB gzip for c
 | Profile | Role | P@3 | Prereq | Fit |
 | --- | --- | --- | --- | --- |
 | SP1 | Data Scientist | 1.00 | ok | 0.95 |
-| SP2 | Full-Stack Web Developer | **0.67** | ok | 0.94 |
+| SP2 | Full-Stack Web Developer | 1.00 (was 0.67) | ok | 0.94 |
 | SP3 | Cloud / DevOps Engineer | 1.00 | ok | 0.91 |
 | SP4 | Data Analyst | 1.00 | ok | 1.00 |
 | SP5 | Cybersecurity Analyst | 1.00 | ok | 0.87 |
@@ -74,7 +76,7 @@ The frontend production bundle is 157 kB gzip for the app plus 127 kB gzip for c
 | SP7 | Data Scientist (no gaps) | 1.00 | ok | 1.00 |
 | SP8 | Software Engineer (SDE) | 1.00 | ok | 0.95 |
 
-**Minor defect (open):** in SP2 the engine ranks CSS above Node.js, because CSS unlocks React. Severity Minor: the target is still met. It is logged for tuning the unlock weight in the next sprint.
+**Defect D-04 fixed (15 Nov, Riya):** in SP2 the engine ranked CSS above Node.js because CSS unlocks React. The importance weights were changed from 0.5 / 0.35 / 0.15 to 0.5 / 0.45 / 0.05 (weight / shortfall / unlocks); SP2 now returns React, JavaScript, Node.js and mean precision@3 rose from 0.959 to 1.000.
 
 ## 7. Defect log
 
@@ -83,7 +85,11 @@ The frontend production bundle is 157 kB gzip for the app plus 127 kB gzip for c
 | D-01 | E2E | Major | Settings page crashed: non-existent validation rules | Fixed |
 | D-02 | E2E | Minor | Relative times off by timezone offset | Fixed |
 | D-03 | flake8 / pytest | Minor | Tests imported helpers from `conftest` without a path | Fixed (pytest.ini `pythonpath`) |
-| D-04 | Accuracy | Minor | SP2 top-3 ordering differs from the label | Open, tuning backlog |
+| D-04 | Accuracy | Minor | SP2 top-3 ordering differs from the label | Fixed (importance weights) |
+| D-05 | bandit | Low | Demo password hard-coded in `seed.py` (B105) | Fixed: moved to settings `DEMO_STUDENT_PASSWORD` |
+| D-06 | bandit | Low | `token_type: "bearer"` flagged as a password (B105) | False positive, marked `# nosec B105` |
+| D-07 | Hypothesis | – | Fuzzer's own JSON generator produced `Infinity`, which is not valid JSON | Test-harness fix only |
+| D-08 | Hypothesis on PostgreSQL (CI) | Major | NUL character (`U+0000`) in a title or URL crashed the PostgreSQL insert and returned 500 | Fixed: global NUL guard returns 422 `INVALID_CHARACTERS`; 3 regression tests |
 
 ## 8. Conclusion
 

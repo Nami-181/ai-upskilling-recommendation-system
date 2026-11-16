@@ -1,0 +1,14 @@
+SP1  data-scientist               ready  29.9%  P@3 1.00  prereq ok  fit 0.95  top3 ['machine_learning', 'pandas', 'statistics']
+SP2  full-stack-web-developer     ready  36.1%  P@3 1.00  prereq ok  fit 0.94  top3 ['react', 'javascript', 'nodejs']
+SP3  cloud-devops-engineer        ready  12.3%  P@3 1.00  prereq ok  fit 0.91  top3 ['linux', 'docker', 'aws']
+SP4  data-analyst                 ready   0.0%  P@3 1.00  prereq ok  fit 1.00  top3 ['excel', 'data_visualization', 'sql']
+SP5  cybersecurity-analyst        ready  22.0%  P@3 1.00  prereq ok  fit 0.87  top3 ['linux', 'cybersecurity', 'networking']
+SP6  ui-ux-designer               ready  17.5%  P@3 1.00  prereq ok  fit 1.00  top3 ['ui_design', 'ux_research', 'figma']
+SP7  data-scientist               ready 100.0%  P@3 1.00  prereq ok  fit 1.00  top3 []
+SP8  software-engineer-sde        ready  27.5%  P@3 1.00  prereq ok  fit 0.95  top3 ['dsa', 'git', 'python']
+{
+  "profiles": 8,
+  "mean_precision_at_3": 1.0,
+  "prereq_valid_rate": 1.0,
+  "mean_level_fit": 0.953
+}

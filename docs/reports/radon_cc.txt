@@ -1,0 +1,21 @@
+app\api\routes\profile.py
+    F 44:0 update_profile - C (17)
+app\api\routes\progress.py
+    F 22:0 post_progress - C (16)
+app\api\routes\recommendations.py
+    F 134:0 feedback - D (21)
+app\services\paths.py
+    F 124:0 path_out - D (21)
+    F 172:0 apply_quiz - C (12)
+    F 207:0 apply_feedback - C (11)
+app\services\progress.py
+    F 30:0 summary - E (33)
+ai_engine\evaluate.py
+    F 20:0 evaluate - C (17)
+ai_engine\gap.py
+    F 52:0 analyze_gap - C (11)
+ai_engine\planner.py
+    F 42:0 order_skills - C (11)
+
+10 blocks (classes, functions, methods) analyzed.
+Average complexity: C (17.0)

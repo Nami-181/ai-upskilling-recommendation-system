@@ -56,10 +56,12 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - name: Lint
         run: flake8 app ai_engine tests scripts
+      - name: Security static analysis (bandit)
+        run: bandit -r app ai_engine -q
       - name: Migrations apply cleanly on PostgreSQL
         run: alembic upgrade head && alembic check
       - name: Unit + API tests
-        run: pytest --cov=app --cov=ai_engine --cov-report=term --cov-fail-under=85
+        run: pytest --cov=app --cov=ai_engine --cov-branch --cov-report=term --cov-fail-under=85
       - name: Recommendation accuracy on sample profiles
         run: python -m ai_engine.evaluate
 

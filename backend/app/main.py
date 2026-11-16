@@ -6,7 +6,7 @@
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 
@@ -14,6 +14,7 @@ from app.api.deps import SessionDep
 from app.api.routes import admin, auth, catalog, profile, progress, recommendations
 from app.core.config import settings
 from app.core.errors import register_error_handlers
+from app.core.sanitize import reject_nul_bytes
 from app.seed import init_db
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -30,6 +31,7 @@ app = FastAPI(
     version="1.0.0",
     description="Backend for LUMORA, the AI-Powered Upskilling Recommendation and Automation System for Students.",
     lifespan=lifespan,
+    dependencies=[Depends(reject_nul_bytes)],
 )
 app.add_middleware(
     CORSMiddleware,

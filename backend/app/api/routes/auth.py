@@ -42,7 +42,7 @@ def _demo(token: str, sent: bool) -> str | None:
 
 
 def _session(user: User) -> dict:
-    return {"access_token": create_access_token(user.id), "token_type": "bearer", "user": user_out(user)}
+    return {"access_token": create_access_token(user.id), "token_type": "bearer", "user": user_out(user)}  # nosec B105
 
 
 @router.post("/register", response_model=RegisterOut, status_code=201, dependencies=limited)
