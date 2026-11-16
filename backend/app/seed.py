@@ -18,7 +18,7 @@ from app.models import (CareerRole, Certification, ProjectIdea, QuizQuestion, Re
 
 log = logging.getLogger("lumora.seed")
 
-DEMO_STUDENT = {"email": "demo@lumora.app", "password": "Lumora@2026"}
+DEMO_STUDENT = {"email": settings.DEMO_STUDENT_EMAIL, "password": settings.DEMO_STUDENT_PASSWORD}
 
 
 def seed_catalog(db: Session) -> int:

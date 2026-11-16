@@ -52,3 +52,6 @@ frontend/.env
 frontend/dist/
 .venv/
 newman.xml
+
+# Hypothesis fuzzing database
+**/.hypothesis/

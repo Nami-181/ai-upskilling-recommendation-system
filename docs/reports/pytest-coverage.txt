@@ -1,0 +1,45 @@
+...............................................................          [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.14.10-final-0 _______________
+
+Name                                Stmts   Miss Branch BrPart  Cover
+---------------------------------------------------------------------
+ai_engine\__init__.py                   6      0      0      0   100%
+ai_engine\adaptive.py                  47      5     18      3    88%
+ai_engine\catalog.py                   50      1      4      1    96%
+ai_engine\evaluate.py                  29      5      6      1    77%
+ai_engine\gap.py                       57      1     20      1    97%
+ai_engine\planner.py                   71      0     30      0   100%
+ai_engine\recommender.py               78      5     22      6    89%
+ai_engine\taxonomy.py                  30      0     12      0   100%
+app\__init__.py                         0      0      0      0   100%
+app\api\__init__.py                     0      0      0      0   100%
+app\api\deps.py                        44      3     12      2    91%
+app\api\routes\__init__.py              0      0      0      0   100%
+app\api\routes\admin.py                27     10      4      0    55%
+app\api\routes\auth.py                 97      7     18      1    91%
+app\api\routes\catalog.py             108     10     34     11    85%
+app\api\routes\profile.py             119     14     36      7    86%
+app\api\routes\progress.py             56     12     18      4    70%
+app\api\routes\recommendations.py     114     12     34      5    87%
+app\core\__init__.py                    0      0      0      0   100%
+app\core\config.py                     45      2      4      2    92%
+app\core\db.py                         17      0      4      2    90%
+app\core\errors.py                     33      4      2      0    89%
+app\core\ratelimit.py                  27      2      6      2    88%
+app\core\security.py                   27      2      0      0    93%
+app\main.py                            24      0      2      0   100%
+app\models.py                         230      1      4      1    99%
+app\schemas.py                        217      1     12      1    99%
+app\seed.py                            59      5     16      7    84%
+app\services\__init__.py                0      0      0      0   100%
+app\services\catalog.py                32      1      8      1    95%
+app\services\email.py                  29     13      4      1    52%
+app\services\paths.py                 152     15     50     13    85%
+app\services\progress.py               42      0     10      1    98%
+app\services\students.py               42      2     10      2    92%
+---------------------------------------------------------------------
+TOTAL                                1909    133    400     75    90%
+Coverage HTML written to dir ../docs/reports/coverage-html
+Coverage XML written to file ../docs/reports/coverage.xml
+63 passed in 65.38s (0:01:05)

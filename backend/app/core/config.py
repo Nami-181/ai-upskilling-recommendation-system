@@ -39,6 +39,8 @@ class Settings(BaseSettings):
 
     FIRST_ADMIN_EMAIL: str = "admin@lumora.app"
     FIRST_ADMIN_PASSWORD: str = "Admin@2026"
+    DEMO_STUDENT_EMAIL: str = "demo@lumora.app"
+    DEMO_STUDENT_PASSWORD: str = "Lumora@2026"  # demo account only; override in production
 
     @field_validator("DATABASE_URL")
     @classmethod
