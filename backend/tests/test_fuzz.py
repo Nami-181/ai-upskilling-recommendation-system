@@ -137,3 +137,16 @@ def test_fuzz_skill_extraction(cat, text):
 @given(key=st.lists(st.integers(0, 3), max_size=10), answers=st.lists(st.integers(-5, 10), max_size=12))
 def test_fuzz_quiz_grading(key, answers):
     assert 0 <= grade_quiz(key, answers) <= 100
+
+
+# ---------------- regression for the bug the fuzzer found (D-08) ----------------
+@pytest.mark.parametrize("body", [{"title": "My\u0000app", "description": "x"}, {"title": "ok title", "url": "\u0000"}])
+def test_nul_characters_are_rejected_not_500(client, student, body):
+    headers, _ = student
+    r = client.post("/profile/projects", headers=headers, json=body)
+    assert r.status_code == 422  # rejected as invalid input, never a 500
+
+
+def test_nul_in_query_is_rejected(client):
+    r = client.get("/resources", params={"q": "py\x00thon"})
+    assert r.status_code == 422

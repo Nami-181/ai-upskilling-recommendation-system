@@ -199,7 +199,7 @@ The submission PDF follows the order requested in the course email:
   - AI-engine formulas and datasets,
   - tests, CI workflows and documentation,
   - Labs 5 to 7 (static analysis, coverage and fuzzing set-up).
-- **Every change went through a pull request,** with automated checks: lint, migrations on PostgreSQL, 63 tests with an 85% coverage gate, Postman end-to-end run, and frontend build. A change merges only when everything is green.
+- **Every change went through a pull request,** with automated checks: lint, migrations on PostgreSQL, 66 tests with an 85% coverage gate, Postman end-to-end run, and frontend build. A change merges only when everything is green.
 
 **What worked well**
 
@@ -234,7 +234,7 @@ The submission PDF follows the order requested in the course email:
 | flake8 | 0 issues | 0 issues | Kept at zero by CI on every pull request |
 | bandit | 2 Low (B105) | 0 open | D-05 fixed (demo password moved to settings); D-06 false positive ("bearer" is a token type) marked `# nosec B105` |
 | Lines scanned (bandit) | 2,337 | – | 0 Medium, 0 High findings |
-| radon average complexity | A (3.3) | A (3.3) | 216 code blocks (functions, methods, classes); 206 rated A or B |
+| radon average complexity | A (3.3) | A (3.3) | 217 code blocks (functions, methods, classes); 207 rated A or B |
 
 **Complexity hotspots (rated C or worse)**
 
@@ -273,9 +273,9 @@ The submission PDF follows the order requested in the course email:
 
 | Metric | Covered | Total | Result |
 | --- | --- | --- | --- |
-| Tests | 63 passed | 63 | 100% pass |
-| Statements | 1,776 | 1,909 | **93.0%** |
-| Branches | 305 | 400 | **76.3%** |
+| Tests | 66 passed | 66 | 100% pass |
+| Statements | 1,787 | 1,919 | **93.1%** |
+| Branches | 308 | 402 | **76.6%** |
 | Combined (lines + branches) | – | – | **90%** |
 
 **Coverage by module (line + branch)**
@@ -331,14 +331,19 @@ The submission PDF follows the order requested in the course email:
 
 **Results**
 
-- **Coverage of the fuzzing:** 11 properties × 150 generated inputs = **1,650 fuzz cases. No server errors, crashes or broken invariants were found.**
-- **Why the input validation holds up:**
+- **Coverage of the fuzzing:** 11 properties × 150 generated inputs = **1,650 fuzz cases per run.** The AI-engine invariants held for every input.
+- **Real bug found (D-08), only on PostgreSQL:**
+  - When CI ran the fuzz tests against PostgreSQL, Hypothesis found that a NUL character (`U+0000`) inside a project or course title crashed the database insert. The API answered 500 instead of rejecting the input.
+  - SQLite (used on our laptops) stores NUL without complaint, so the bug was invisible locally. This shows why fuzzing should run against the production database.
+  - Fix: a global request guard (`app/core/sanitize.py`) rejects NUL in any JSON body, query or path with a clean 422 `INVALID_CHARACTERS` error before any route runs. Three regression tests lock the fix in.
+  - After the fix, all fuzz properties pass on both SQLite and PostgreSQL.
+- **Why the rest of the input validation held up:**
   - Every request body is checked by pydantic schemas (types, lengths, ranges, email format, URL scheme).
   - A global error handler turns any validation failure into a clean 422 response.
 - **One problem found, in the test harness itself (D-07):**
   - The fuzzer generated `Infinity` values, which are not valid JSON.
   - The fix was in the generator only; no product bug was involved.
-- **Fuzz tests now run in CI with every pull request,** as part of the 63 tests.
+- **Fuzz tests now run in CI with every pull request,** as part of the 66 tests.
 
 ## 10. System validation (end-to-end)
 

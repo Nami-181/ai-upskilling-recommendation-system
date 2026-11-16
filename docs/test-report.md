@@ -7,10 +7,10 @@ Plan: [test-plan.md](test-plan.md)
 
 | Suite | Result | Evidence |
 | --- | --- | --- |
-| Unit + API tests (pytest) | **63 / 63 passed** (52 unit/API + 11 fuzz properties) | `cd backend && pytest --cov=app --cov=ai_engine --cov-branch` |
-| Statement (line) coverage | **93.0%** (1,776 of 1,909 statements); CI gate 85% | `docs/reports/coverage-html/` |
-| Branch coverage | **76.3%** (305 of 400 branches); combined line + branch **90%** | `docs/reports/coverage.xml` |
-| Fuzzing (Hypothesis, Lab 7) | **11 properties × 150 generated inputs = 1,650 cases, 0 server errors** | `tests/test_fuzz.py` |
+| Unit + API tests (pytest) | **66 / 66 passed** (52 unit/API + 11 fuzz properties + 3 regression tests for D-08) | `cd backend && pytest --cov=app --cov=ai_engine --cov-branch` |
+| Statement (line) coverage | **93.1%** (1,787 of 1,919 statements); CI gate 85% | `docs/reports/coverage-html/` |
+| Branch coverage | **76.6%** (308 of 402 branches); combined line + branch **90%** | `docs/reports/coverage.xml` |
+| Fuzzing (Hypothesis, Lab 7) | **11 properties × 150 generated inputs = 1,650 cases per run; 1 real bug found on PostgreSQL (D-08), fixed** | `tests/test_fuzz.py` |
 | Static analysis (Lab 5) | flake8 0 issues; bandit 0 open issues (2 Low found and resolved); radon average complexity A (3.3) | `docs/reports/` |
 | Migrations | `alembic upgrade head` on empty DB creates 21 tables; seed is idempotent | CI job `backend` |
 | Postman / Newman | **37 requests, 48 / 48 assertions passed** | CI job `api-e2e`, JUnit artefact |
@@ -88,7 +88,8 @@ The frontend production bundle is 157 kB gzip for the app plus 127 kB gzip for c
 | D-04 | Accuracy | Minor | SP2 top-3 ordering differs from the label | Fixed (importance weights) |
 | D-05 | bandit | Low | Demo password hard-coded in `seed.py` (B105) | Fixed: moved to settings `DEMO_STUDENT_PASSWORD` |
 | D-06 | bandit | Low | `token_type: "bearer"` flagged as a password (B105) | False positive, marked `# nosec B105` |
-| D-07 | Hypothesis | – | Fuzzer's own JSON generator produced `Infinity`, which is not valid JSON | Test-harness fix only; no product bug found |
+| D-07 | Hypothesis | – | Fuzzer's own JSON generator produced `Infinity`, which is not valid JSON | Test-harness fix only |
+| D-08 | Hypothesis on PostgreSQL (CI) | Major | NUL character (`U+0000`) in a title or URL crashed the PostgreSQL insert and returned 500 | Fixed: global NUL guard returns 422 `INVALID_CHARACTERS`; 3 regression tests |
 
 ## 8. Conclusion
 
